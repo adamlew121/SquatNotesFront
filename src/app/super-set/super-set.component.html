@@ -1,0 +1,19 @@
+<div class="container">
+  <ng-container *ngFor="let set of superSet.sets">
+    <div class="row">
+      <div class="col-sm">
+        {{set.exercise.name}}
+      </div>
+      <div class="col-sm">
+        {{set.weight}}
+      </div>
+      <div class="col-sm">
+        {{set.reps}}
+      </div>
+      <div class="col-sm">
+        {{set.RPE}}
+      </div>
+    </div>
+  </ng-container>
+  <hr class="my-4">
+</div>

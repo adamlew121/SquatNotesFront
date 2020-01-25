@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>{{this.appService.getSelectedTraining().name}}</h1>
+  <p>{{this.appService.getSelectedTraining().date | date: 'shortDate'}}</p>
+</div>
+<div class="container alert alert-dark">
+  <div class="container alert alert-light">
+    <div class="row">
+      <div class="col-sm">
+        Exercise
+      </div>
+      <div class="col-sm">
+        Weight
+      </div>
+      <div class="col-sm">
+        Reps
+      </div>
+      <div class="col-sm">
+        RPE
+      </div>
+    </div>
+  </div>
+  <div class="container alert alert-light">
+    <ng-container *ngFor="let superSet of this.appService.getSelectedTraining().superSetList">
+      <app-super-set [superSet]="superSet"></app-super-set>
+    </ng-container>
+  </div>
+</div>
