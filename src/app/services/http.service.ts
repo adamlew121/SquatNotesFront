@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Exercise} from '../models/exercise';
 import {Observable} from 'rxjs';
 import {Muscle} from '../models/muscle';
 import {Training} from '../models/training';
+import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,10 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  // getUserByLoginAndPassword(login: string, password: string) {
-  //   this.http.get(this.URL + '')
-  // }
+   getUserByLoginAndPassword(login: string, password: string): Observable<User> {
+     const parameters = new HttpParams().set('login', login).set('password', password);
+     return this.http.get<User>(this.URL + 'user', {params : parameters} );
+   }
 
   // getTrainings(userId: number) {
   //   this.http.get()

@@ -2,32 +2,25 @@ import {Injectable} from '@angular/core';
 import {Training} from '../models/training';
 import {User} from '../models/user';
 import {Router} from '@angular/router';
+import {HttpService} from './http.service';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-
   private title = 'Squat Notes';
-
-  fakeUser: User;
+  public fakeUser: User = new User();
 
   fakeTrainingList: Training[];
 
   private selectedTraining: Training;
 
-  constructor(private router: Router) {
-    this.fakeUser = {
-      id: 1,
-      name: 'faker',
-      email: 'fake@fake.fake',
-      surname: 'faker',
-      login: 'faker',
-      password: 'fake123',
-      dateOfBirthday: new Date(),
-      sex: 'male'
-    };
-    this.fakeTrainingList = [
+  constructor(private router: Router, private httpService: HttpService ) {
+    this.httpService.getUserByLoginAndPassword('JEFF', 'JEFF').subscribe((user: User) => {
+      this.fakeUser = user;
+    });
+ /*   this.fakeTrainingList = [
       {
         id: 1,
         user: 1,
@@ -87,6 +80,7 @@ export class AppService {
         ]
       }
     ];
+    */
   }
 
   getTitle(): string {
