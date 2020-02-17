@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../services/http.service';
 
 @Component({
@@ -8,7 +8,8 @@ import {HttpService} from '../services/http.service';
 })
 export class HttpTesterComponent {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {
+  }
 
   getExercises() {
     this.httpService.getExercises().subscribe(exercises => {
@@ -25,6 +26,12 @@ export class HttpTesterComponent {
   getTrainingsByUser(idUser: number) {
     this.httpService.getTrainingsByUser(idUser).subscribe(exercises => {
       console.log(exercises);
+    });
+  }
+
+  getChartPoints(idUser: number, exerciseName: string) {
+    this.httpService.getChartPoints(idUser, exerciseName).subscribe(chartPoints => {
+      console.log(chartPoints);
     });
   }
 

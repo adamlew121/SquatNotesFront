@@ -1,6 +1,6 @@
 <div class="container">
-  <h1>{{this.appService.getSelectedTraining().name}}</h1>
-  <p>{{this.appService.getSelectedTraining().date | date: 'shortDate'}}</p>
+  <h1>{{this.trainingService.getSelectedTraining().name}}</h1>
+  <p>{{this.trainingService.getSelectedTraining().date | date: 'shortDate'}}</p>
 </div>
 <div class="container alert alert-dark">
   <div class="container alert alert-light">
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="container alert alert-light">
-    <ng-container *ngFor="let superSet of this.appService.getSelectedTraining().superSetList">
+    <ng-container *ngFor="let superSet of this.trainingService.getSelectedTraining().superSetList">
       <app-super-set [superSet]="superSet"></app-super-set>
     </ng-container>
   </div>

@@ -5,6 +5,7 @@ import {TrainingListComponent} from './training-list/training-list.component';
 import {SupportComponent} from './support/support.component';
 import {TrainingDetailComponent} from './training-detail/training-detail.component';
 import {HttpTesterComponent} from './http-tester/http-tester.component';
+import {ProgressComponent} from './progress/progress.component';
 
 const routes: Routes = [
   {path:  '', pathMatch:  'full', redirectTo:  'home'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'training-list', component: TrainingListComponent},
   {path: 'support', component: SupportComponent},
   {path: 'training-detail', component: TrainingDetailComponent},
-  {path: 'http-tester', component: HttpTesterComponent}
+  {path: 'http-tester', component: HttpTesterComponent},
+  {path: 'progress', component: ProgressComponent}
 ];
 
 @NgModule({

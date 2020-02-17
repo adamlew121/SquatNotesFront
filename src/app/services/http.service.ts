@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Exercise} from '../models/exercise';
 import {Observable} from 'rxjs';
-import {Muscle} from '../models/muscle';
 import {Training} from '../models/training';
+import {ChartPoint} from '../models/chart-point';
+import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,6 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  // getUserByLoginAndPassword(login: string, password: string) {
-  //   this.http.get(this.URL + '')
-  // }
-
-  // getTrainings(userId: number) {
-  //   this.http.get()
-  // }
-
   getExercises(): Observable<Array<Exercise>> {
     return this.http.get<Array<Exercise>>(this.URL + 'exercise');
   }
@@ -33,5 +26,13 @@ export class HttpService {
 
   getTrainingsByUser(idUser: number): Observable<Array<Training>> {
     return this.http.get<Array<Training>>(this.URL + 'user/' + idUser + '/training');
+  }
+
+  getChartPoints(idUser: number, exerciseName: string): Observable<Array<ChartPoint>> {
+    return this.http.get<Array<ChartPoint>>(this.URL + 'user/' + idUser + '/progress?exerciseName=' + exerciseName);
+  }
+
+  getUserByLoginAndPassword(login: string, password: string): Observable<User> {
+    return this.http.get<User>(this.URL + 'user?login=' + login + '&password=' + password);
   }
 }

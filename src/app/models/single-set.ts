@@ -6,5 +6,5 @@ export class SingleSet {
   exercise: Exercise;
   weight: number;
   reps: number;
-  RPE: number;
+  rpe: number;
 }

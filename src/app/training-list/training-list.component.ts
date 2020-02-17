@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AppService} from '../services/app.service';
+import {TrainingService} from '../services/training.service';
+import {Training} from '../models/training';
 
 @Component({
   selector: 'app-training-list',
@@ -8,7 +9,9 @@ import {AppService} from '../services/app.service';
 })
 export class TrainingListComponent implements OnInit {
 
-  constructor(private appService: AppService) { }
+  constructor(private trainingService: TrainingService) {
+    this.trainingService.getTrainingsByUser(1);
+  }
 
   ngOnInit() {
   }

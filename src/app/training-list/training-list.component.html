@@ -10,14 +10,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let training of this.appService.fakeTrainingList">
+    <tr *ngFor="let training of this.trainingService.getTrainingList()">
 
       <td>{{ training.id }}</td>
       <td> {{ training.name }}</td>
       <td> {{ training.date | date: 'shortDate' }}</td>
       <td> {{ training.difficulty }}</td>
       <td>
-        <button class="btn btn-primary" (click)="this.appService.selectTraining(training);">Show details</button>
+        <button class="btn btn-primary" (click)="this.trainingService.selectTraining(training);">Show details</button>
       </td>
     </tr>
     </tbody>

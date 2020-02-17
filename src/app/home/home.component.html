@@ -1,14 +1,28 @@
 <div class="jumbotron" style="background-color: #fff; height: calc(95vh);">
-  <h1>Your account</h1>
-  <p class="lead">
-    id: {{ this.appService.fakeUser.id}} <br>
-    name:{{ this.appService.fakeUser.name}} <br>
-    surname: {{ this.appService.fakeUser.surname}} <br>
-    email: {{ this.appService.fakeUser.email}} <br>
-    login: {{ this.appService.fakeUser.login}} <br>
-    password: {{ this.appService.fakeUser.password}} <br>
-    dateOfBirthday: {{ this.appService.fakeUser.dateOfBirthday}} <br>
-    sex: {{ this.appService.fakeUser.sex}} <br>
-  </p>
-  <a class="btn btn-lg btn-primary" href="" role="button">View tutorial</a>
+  <div class="container align-content-center w-75 text-center">
+    <app-profile-photo></app-profile-photo>
+    <h1>Your account</h1>
+    <p class="lead">
+      id: {{ this.appService.user?.id}}
+    </p>
+    <p class="lead">
+      Name:{{ this.appService.user?.name}}
+    </p>
+    <p class="lead">
+      Surname: {{ this.appService.user?.surname}}
+    </p>
+    <p class="lead">
+      Email: {{ this.appService.user?.email}}
+    </p>
+    <p class="lead">
+      Login: {{ this.appService.user?.login}}
+    </p>
+    <p class="lead">
+      Date of birthday: {{ this.appService.user?.dateOfBirthday | date: 'shortDate'}}
+    </p>
+    <p class="lead">
+      Sex: {{ this.appService.user?.sex}}
+    </p>
+    <a class="btn btn-lg btn-primary" routerLink="/progress" role="button">My progress</a>
+  </div>
 </div>

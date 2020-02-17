@@ -8,7 +8,9 @@ import {AppService} from '../services/app.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService) {
+    this.appService.getUserByLoginAndPassword('TEST', 'TEST123!');
+  }
 
   ngOnInit() {
   }
