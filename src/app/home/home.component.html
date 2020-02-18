@@ -1,6 +1,5 @@
 <div class="jumbotron" style="background-color: #fff; height: calc(95vh);">
   <div class="container align-content-center w-75 text-center">
-    <app-profile-photo></app-profile-photo>
     <h1>Your account</h1>
     <p class="lead">
       id: {{ this.appService.user?.id}}
@@ -24,5 +23,7 @@
       Sex: {{ this.appService.user?.sex}}
     </p>
     <a class="btn btn-lg btn-primary" routerLink="/progress" role="button">My progress</a>
+
+    <p><a [routerLink]="['/login']">Logout</a> </p>
   </div>
 </div>

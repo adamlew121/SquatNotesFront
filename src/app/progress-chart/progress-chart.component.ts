@@ -13,7 +13,7 @@ export class ProgressChartComponent implements OnInit {
   chart;
   data = [];
   dataSet = [];
-  chartTitle = 'aaaaaaa';
+  chartTitle = 'aaaaaa';
 
   constructor(private progressService: ProgressService) {
     this.progressService.getDataObs().subscribe((data: Array<Date>) => {

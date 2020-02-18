@@ -22,11 +22,12 @@ export class AppService {
     return this.title;
   }
 
-  getUserByLoginAndPassword(login: string, password: string) {
-    this.httpService.getUserByLoginAndPassword('TEST', 'TEST123!').subscribe(user => {
-      this.user = user;
-      console.log(user);
-    });
-  }
+
+ // getUserByLoginAndPassword(login: string, password: string) {
+ //   this.httpService.getUserByLoginAndPassword('TEST', 'TEST123!').subscribe(user => {
+ //     this.user = user;
+ //     console.log(user);
+ //   });
+ // }
 
 }

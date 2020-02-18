@@ -13,12 +13,12 @@ import { SuperSetComponent } from './super-set/super-set.component';
 import {HttpService} from './services/http.service';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpTesterComponent } from './http-tester/http-tester.component';
-import { ProgressComponent } from './progress/progress.component';
-import { ProgressChartComponent } from './progress-chart/progress-chart.component';
-import {ChartsModule} from 'ng2-charts';
-import {ProgressService} from './services/progress.service';
-import {TrainingService} from './services/training.service';
-import { ProfilePhotoComponent } from './profile-photo/profile-photo.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
+import {AppService} from './services/app.service';
+import {AuthenticationService} from './services/authentication.service';
+import {AuthGuard} from './guard/Auth.guard';
+import {AlertService} from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -31,17 +31,16 @@ import { ProfilePhotoComponent } from './profile-photo/profile-photo.component';
     TrainingDetailComponent,
     SuperSetComponent,
     HttpTesterComponent,
-    ProgressComponent,
-    ProgressChartComponent,
-    ProfilePhotoComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ChartsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [HttpService, ProgressService, TrainingService],
+  providers: [HttpService, AppService, AuthenticationService, AuthGuard, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
