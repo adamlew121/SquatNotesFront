@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Chart} from 'chart.js';
+// import {Chart} from 'chart.js';
 import {ProgressService} from '../services/progress.service';
 
 
@@ -13,7 +13,7 @@ export class ProgressChartComponent implements OnInit {
   chart;
   data = [];
   dataSet = [];
-  chartTitle = 'aaaaaaa';
+  chartTitle = 'aaaaaa';
 
   constructor(private progressService: ProgressService) {
     this.progressService.getDataObs().subscribe((data: Array<Date>) => {

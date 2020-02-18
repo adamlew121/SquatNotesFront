@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {TrainingService} from '../services/training.service';
 import {Training} from '../models/training';
 
 @Component({
@@ -9,9 +8,7 @@ import {Training} from '../models/training';
 })
 export class TrainingListComponent implements OnInit {
 
-  constructor(private trainingService: TrainingService) {
-    this.trainingService.getTrainingsByUser(1);
-  }
+  constructor() {}
 
   ngOnInit() {
   }

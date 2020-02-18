@@ -5,16 +5,19 @@ import {TrainingListComponent} from './training-list/training-list.component';
 import {SupportComponent} from './support/support.component';
 import {TrainingDetailComponent} from './training-detail/training-detail.component';
 import {HttpTesterComponent} from './http-tester/http-tester.component';
-import {ProgressComponent} from './progress/progress.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {AuthGuard} from './guard/Auth.guard';
 
 const routes: Routes = [
-  {path:  '', pathMatch:  'full', redirectTo:  'home'},
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'training-list', component: TrainingListComponent},
   {path: 'support', component: SupportComponent},
   {path: 'training-detail', component: TrainingDetailComponent},
   {path: 'http-tester', component: HttpTesterComponent},
-  {path: 'progress', component: ProgressComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

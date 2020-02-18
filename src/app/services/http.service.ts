@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Exercise} from '../models/exercise';
 import {Observable} from 'rxjs';
 import {Training} from '../models/training';
@@ -34,5 +34,8 @@ export class HttpService {
 
   getUserByLoginAndPassword(login: string, password: string): Observable<User> {
     return this.http.get<User>(this.URL + 'user?login=' + login + '&password=' + password);
+  }
+  postUser(dataObj): Observable<User> {
+    return this.http.post<User>(this.URL + 'user', dataObj);
   }
 }
