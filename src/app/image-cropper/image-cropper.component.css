@@ -1,0 +1,24 @@
+.img-container {
+  width: 640px;
+  height: 480px;
+  float: left;
+  border-radius: 50%;
+}
+
+.img-preview {
+  width: 200px;
+  height: 200px;
+  float: left;
+  margin-left: 10px;
+  border-radius: 50%;
+
+}
+
+.cropper-crop-box, .cropper-view-box {
+  border-radius: 50%;
+}
+
+.cropper-view-box {
+  box-shadow: 0 0 0 1px #39f;
+  outline: 0;
+}

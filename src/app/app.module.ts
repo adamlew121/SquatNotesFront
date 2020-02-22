@@ -19,6 +19,15 @@ import {AppService} from './services/app.service';
 import {AuthenticationService} from './services/authentication.service';
 import {AuthGuard} from './guard/Auth.guard';
 import {AlertService} from './services/alert.service';
+import { ProgressComponent } from './progress/progress.component';
+import { ProgressChartComponent } from './progress-chart/progress-chart.component';
+import {ChartsModule} from 'ng2-charts';
+import {ProgressService} from './services/progress.service';
+import {TrainingService} from './services/training.service';
+import { ProfilePhotoComponent } from './profile-photo/profile-photo.component';
+import { ImageCropperComponent } from './image-cropper/image-cropper.component';
+import { ModalWindowComponent } from './modal-window/modal-window.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,15 +41,22 @@ import {AlertService} from './services/alert.service';
     SuperSetComponent,
     HttpTesterComponent,
     RegisterComponent,
+    ProgressComponent,
+    ProgressChartComponent,
+    ProfilePhotoComponent,
+    ImageCropperComponent,
+    ModalWindowComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule,
+    NgbModule
   ],
-  providers: [HttpService, AppService, AuthenticationService, AuthGuard, AlertService],
+  providers: [HttpService, AppService, AuthenticationService, AuthGuard, AlertService, ProgressService, TrainingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
