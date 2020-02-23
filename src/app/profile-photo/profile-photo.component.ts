@@ -11,12 +11,12 @@ export class ProfilePhotoComponent implements OnInit {
   selectedFile: any = null;
   imgSrc = 'assets/img/default_profile_photo.png';
   imageFromDb: any = null;
-  closeResult: string;
-  @ViewChild('content', { static: false })
+  @ViewChild('content', {static: false})
   element: TemplateRef<any>;
   modalReference: any;
 
-  constructor(private imageService: ImageService, private modalService: NgbModal) { }
+  constructor(private imageService: ImageService, private modalService: NgbModal) {
+  }
 
   ngOnInit() {
     this.loadPhoto(1);
@@ -25,11 +25,11 @@ export class ProfilePhotoComponent implements OnInit {
   onFileChanged(event) {
     const reader = new FileReader();
     reader.onload = (e: any) => {
+      const oldSrc = this.imgSrc;
       this.imgSrc = e.target.result;
-      this.open(this.element);
+      this.open(this.element, oldSrc);
     };
     reader.readAsDataURL(event.target.files[0]);
-    this.selectedFile = event.target.files[0];
   }
 
   loadPhoto(idUser) {
@@ -41,23 +41,13 @@ export class ProfilePhotoComponent implements OnInit {
     });
   }
 
-  open(content) {
+  open(content, oldSrc) {
     this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
-    this.modalReference.result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
+    this.modalReference.result.then(() => {
+      },
+      () => {
+        this.imgSrc = oldSrc;
+      });
   }
 
   selectedImage(event): void {
