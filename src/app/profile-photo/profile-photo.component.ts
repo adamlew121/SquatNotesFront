@@ -9,7 +9,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProfilePhotoComponent implements OnInit {
   selectedFile: any = null;
-  imgSrc = 'assets/img/imgExample.jpg';
+  imgSrc = 'assets/img/default_profile_photo.png';
   imageFromDb: any = null;
   closeResult: string;
   @ViewChild('content', { static: false })
