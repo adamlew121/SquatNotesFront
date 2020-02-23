@@ -3,3 +3,6 @@
   height: auto;
   border-radius: 50%;
 }
+.profilePhoto:hover {
+  cursor: pointer;
+}

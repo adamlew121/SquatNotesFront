@@ -26,7 +26,6 @@ import {ProgressService} from './services/progress.service';
 import {TrainingService} from './services/training.service';
 import { ProfilePhotoComponent } from './profile-photo/profile-photo.component';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
-import { ModalWindowComponent } from './modal-window/modal-window.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -44,8 +43,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ProgressComponent,
     ProgressChartComponent,
     ProfilePhotoComponent,
-    ImageCropperComponent,
-    ModalWindowComponent
+    ImageCropperComponent
   ],
   imports: [
     BrowserModule,

@@ -2,5 +2,7 @@
   style="display: none"
   type="file" (change)="onFileChanged($event)"
   #fileInput>
-<button [id]="" (click)="fileInput.click()">Select File</button>
-<img [src]="imgSrc" class="profilePhoto"/>
+<img [src]="imgSrc" class="profilePhoto" (click)="fileInput.click()"/>
+<ng-template #content let-modal>
+  <app-image-cropper [src]="imgSrc" (eventImage)="selectedImage($event)"></app-image-cropper>
+</ng-template>
