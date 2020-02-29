@@ -14,7 +14,9 @@ export class AuthenticationService {
   login(username: string, password: string) {
     return this.httpService.getUserByLoginAndPassword(username, password).pipe(map((user: User) => {
       if (user) {
+        console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('tempUserId', user.id.toString());
         return user;
       }
     }));

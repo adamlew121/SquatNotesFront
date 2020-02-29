@@ -27,6 +27,10 @@ import {TrainingService} from './services/training.service';
 import { ProfilePhotoComponent } from './profile-photo/profile-photo.component';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TrainingAddComponent } from './training-add/training-add.component';
+import {Ng5SliderModule} from 'ng5-slider';
+import { SuperSetAddComponent } from './super-set-add/super-set-add.component';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +47,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ProgressComponent,
     ProgressChartComponent,
     ProfilePhotoComponent,
-    ImageCropperComponent
+    ImageCropperComponent,
+    TrainingAddComponent,
+    SuperSetAddComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
-    NgbModule
+    NgbModule,
+    Ng5SliderModule
   ],
   providers: [HttpService, AppService, AuthenticationService, AuthGuard, AlertService, ProgressService, TrainingService],
   bootstrap: [AppComponent]

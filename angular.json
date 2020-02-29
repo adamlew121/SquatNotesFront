@@ -126,6 +126,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "Squat-Notes-Front"
 }

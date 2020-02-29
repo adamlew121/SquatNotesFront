@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Exercise} from '../models/exercise';
 import {Observable} from 'rxjs';
 import {Training} from '../models/training';
@@ -24,6 +24,10 @@ export class HttpService {
     return this.http.get<Array<Exercise>>(this.URL + 'exercises/' + muscleName);
   }
 
+  getExercisesByUser(idUser: number): Observable<Array<Exercise>> {
+    return this.http.get<Array<Exercise>>(this.URL + 'exercises/' + idUser);
+  }
+
   getTrainingsByUser(idUser: number): Observable<Array<Training>> {
     return this.http.get<Array<Training>>(this.URL + 'user/' + idUser + '/training');
   }
@@ -37,5 +41,17 @@ export class HttpService {
   }
   postUser(dataObj): Observable<User> {
     return this.http.post<User>(this.URL + 'user', dataObj);
+  }
+
+  deleteTraining(idUser: number, training: Training) {
+    console.log(this.URL + 'user/' + idUser + '/training');
+    console.log({training});
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.put(this.URL + 'user/' + idUser + '/training', JSON.stringify(training), {headers} );
+  }
+
+  createTraining(dataObj, idUser: number): Observable<Training> {
+
+    return this.http.post<Training>(this.URL + 'user/' + idUser + '/training', dataObj);
   }
 }

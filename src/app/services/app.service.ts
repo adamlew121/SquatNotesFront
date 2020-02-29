@@ -24,7 +24,7 @@ export class AppService {
 
 
  // getUserByLoginAndPassword(login: string, password: string) {
- //   this.httpService.getUserByLoginAndPassword('TEST', 'TEST123!').subscribe(user => {
+ //   this.httpService.getUserByLoginAndPassword('TEST123', 'TEST123!').subscribe(user => {
  //     this.user = user;
  //     console.log(user);
  //   });
