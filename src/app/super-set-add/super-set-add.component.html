@@ -1,0 +1,73 @@
+
+<button class="btn btn-success" (click)="this.open(content);">Add new SuperSet</button>
+<div *ngFor="let superSet of this.superSets; let i = index">
+  <h5>Super Set #{{i + 1}}</h5> <button class="btn btn-danger" (click)="this.deleteSuperSet(i);">Delete</button>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Exercise</th>
+    <th>Weight</th>
+    <th>Reps</th>
+    <th>RPE</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let singleSet of superSet.sets">
+
+    <td>{{ singleSet.exercise.name }}</td>
+    <td>{{ singleSet.weight }}</td>
+    <td>{{ singleSet.reps }}</td>
+    <td>{{ singleSet.rpe }}</td>
+  </tr>
+  </tbody>
+</table>
+  <hr class="my-4">
+</div>
+
+<ng-template #content let-modal>
+  <div class="container align-content-center w-75">
+    <table class="table table-hover border-dark">
+      <thead>
+      <tr>
+        <th>Exercise</th>
+        <th>Weight</th>
+        <th>Reps</th>
+        <th>RPE</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let singleSet of singleSets">
+
+        <td>{{ singleSet.exercise.name }}</td>
+        <td>{{ singleSet.weight }}</td>
+        <td>{{ singleSet.reps }}</td>
+        <td>{{ singleSet.rpe }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div ngbDropdown class="d-inline-block" >
+      <button class="btn btn-outline-primary" id="sortMenu" ngbDropdownToggle>{{this.selectedExerciseName}}</button>
+      <div class="dropdown-menu" aria-labelledby="sortMenu" ngbDropdownMenu>
+        <button class="dropdown-item" *ngFor="let exercise of this.exercises" (click)="selectExercise(exercise)" >{{exercise.name}}</button>
+      </div>
+    </div>
+    <div class="form-group">
+    <label>Weight</label>
+    <input [(ngModel)]="weight" class="form-control">
+    </div>
+    <div class="form-group">
+    <label>Reps</label>
+    <input [(ngModel)]="reps" class="form-control">
+    </div>
+    <div class="form-group">
+    <label>RPE</label>
+    <input [(ngModel)]="rpe" class="form-control">
+    </div>
+    <p>
+    <button class="btn btn-info" (click)="this.addSet();">Add new set</button>
+    <button class="btn btn-success" (click)="this.saveSuperSet();">Save this SuperSet</button>
+    </p>
+
+
+  </div>
+</ng-template>

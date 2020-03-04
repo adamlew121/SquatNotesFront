@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true;
+    console.log(this.registerForm.value);
     this.httpService.postUser(this.registerForm.value)
       .pipe(first())
       .subscribe(
