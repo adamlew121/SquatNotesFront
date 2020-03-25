@@ -72,6 +72,7 @@ export class TrainingAddComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
+    this.trainingService.getTrainingsByUser(parseInt(localStorage.getItem('tempUserId'), 10));
   }
 
   open(content) {

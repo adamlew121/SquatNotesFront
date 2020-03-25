@@ -15,7 +15,6 @@ import {SuperSet} from '../models/super-set';
 export class TrainingService {
 
   private trainingList: Array<Training> = [];
-  private trainingListObs = new BehaviorSubject<Array<Training>>(this.trainingList);
   private selectedTraining: Training;
   private exerciseList: Array<Exercise> = [];
   private superSets: Array<SuperSet> = [];
@@ -25,14 +24,8 @@ export class TrainingService {
 
   getTrainingsByUser(idUser: number) {
     this.httpService.getTrainingsByUser(idUser).subscribe(trainings => {
-      trainings.forEach(n => {console.log(n.user); });
       this.trainingList = trainings;
-      console.log(trainings);
     });
-  }
-
-  getTrainingListObs(): Observable<Array<Training>> {
-    return this.trainingListObs.asObservable();
   }
 
   selectTraining(selectedTraining: Training): void {
@@ -56,6 +49,7 @@ export class TrainingService {
     console.log('deleteTraining in service');
     this.httpService.deleteTraining(parseInt(localStorage.getItem('tempUserId'), 10), selectedTraining).subscribe(
       data => {
+        this.getTrainingsByUser(parseInt(localStorage.getItem('tempUserId'), 10));
         console.log('weszlo: ' + data);
       },
       error => {
@@ -63,6 +57,7 @@ export class TrainingService {
         console.log(error);
       }
     );
+
   }
 
   setSuperSets(superSets: Array<SuperSet>) {

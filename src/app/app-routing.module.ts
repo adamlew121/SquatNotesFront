@@ -1,3 +1,4 @@
+import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'http-tester', component: HttpTesterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'exercise-list', component: ExerciseListComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: ''}
 ];
 
