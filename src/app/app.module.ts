@@ -30,6 +30,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TrainingAddComponent } from './training-add/training-add.component';
 import {Ng5SliderModule} from 'ng5-slider';
 import { SuperSetAddComponent } from './super-set-add/super-set-add.component';
+import { ExerciseListComponent } from './exercise-list/exercise-list.component';
+import { ExerciseAddComponent } from './exercise-add/exercise-add.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { SuperSetAddComponent } from './super-set-add/super-set-add.component';
     ProfilePhotoComponent,
     ImageCropperComponent,
     TrainingAddComponent,
-    SuperSetAddComponent
+    SuperSetAddComponent,
+    ExerciseListComponent,
+    ExerciseAddComponent
   ],
   imports: [
     BrowserModule,

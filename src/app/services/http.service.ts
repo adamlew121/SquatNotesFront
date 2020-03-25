@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Training} from '../models/training';
 import {ChartPoint} from '../models/chart-point';
 import {User} from '../models/user';
+import { Muscle } from '../models/muscle';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,15 @@ export class HttpService {
   }
 
   getExercisesByUser(idUser: number): Observable<Array<Exercise>> {
-    return this.http.get<Array<Exercise>>(this.URL + 'exercises/' + idUser);
+    return this.http.get<Array<Exercise>>(this.URL + 'exercises/user/' + idUser);
+  }
+
+  getDefaultExercises(): Observable<Array<Exercise>> {
+    return this.http.get<Array<Exercise>>(this.URL + 'exercises/default');
+  }
+
+  getMuscles(): Observable<Array<Muscle>> {
+    return this.http.get<Array<Muscle>>(this.URL + 'muscle');
   }
 
   getTrainingsByUser(idUser: number): Observable<Array<Training>> {
@@ -51,7 +60,12 @@ export class HttpService {
   }
 
   createTraining(dataObj, idUser: number): Observable<Training> {
-
     return this.http.post<Training>(this.URL + 'user/' + idUser + '/training', dataObj);
   }
+
+  createExercise(dataObj): Observable<Exercise> {
+    return this.http.post<Exercise>(this.URL + 'exercise', dataObj);
+  }
+
+
 }
