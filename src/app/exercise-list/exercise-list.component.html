@@ -1,0 +1,21 @@
+<div class="container" style="margin-top: 70px;">
+  <app-exercise-add></app-exercise-add>
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Exercise name</th>
+      <th>Target Muscles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let exercise of this.exerciseService.getExerciseList()">
+
+      <td>{{ exercise.id }}</td>
+      <td> {{ exercise.name }}</td>
+      <td> {{ getMuscleNames(exercise.targetMuscles) }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
