@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Chart} from 'chart.js';
 import {ProgressService} from '../services/progress.service';
 
@@ -8,7 +8,7 @@ import {ProgressService} from '../services/progress.service';
   templateUrl: './progress-chart.component.html',
   styleUrls: ['./progress-chart.component.css']
 })
-export class ProgressChartComponent implements OnInit {
+export class ProgressChartComponent implements OnInit, OnChanges {
 
   chart;
   data = [];
@@ -18,12 +18,21 @@ export class ProgressChartComponent implements OnInit {
   constructor(private progressService: ProgressService) {
     this.progressService.getDataObs().subscribe((data: Array<Date>) => {
       this.data = data;
+      if (this.chart) {
+        this.chart.update();
+      }
     });
     this.progressService.getDataSetObs().subscribe((dataSet: Array<number>) => {
       this.dataSet = dataSet;
+      if (this.chart) {
+        this.chart.update();
+      }
     });
     this.progressService.getTitleObs().subscribe((title: string) => {
       this.chartTitle = title;
+      if (this.chart) {
+        this.chart.update();
+      }
     });
   }
 
@@ -55,5 +64,10 @@ export class ProgressChartComponent implements OnInit {
         ]
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('dupa');
+    console.log(changes);
   }
 }

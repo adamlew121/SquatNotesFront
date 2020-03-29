@@ -8,12 +8,10 @@ import {BehaviorSubject, Observable} from 'rxjs';
 })
 export class ProgressService {
 
-  private chartPoints: Array<ChartPoint> = [];
   private data: Array<Date> = [];
   private dataSet: Array<number> = [];
   private chartTitle = '';
 
-  private chartPointsObs = new BehaviorSubject<Array<ChartPoint>>(this.chartPoints);
   private dataObs = new BehaviorSubject<Array<Date>>(this.data);
   private dataSetObs = new BehaviorSubject<Array<number>>(this.dataSet);
   private chartTitleObs = new BehaviorSubject<string>(this.chartTitle);
@@ -23,22 +21,24 @@ export class ProgressService {
 
   getChartPoints(idUser: number, exerciseName: string) {
     this.httpService.getChartPoints(idUser, exerciseName).subscribe(chartPoints => {
-      this.chartPoints = chartPoints;
       this.chartTitle = exerciseName;
       console.log(chartPoints);
-      this.getDataFromchartPoints();
+      this.getDataFromChartPoints(chartPoints);
       console.log(this.data);
       console.log(this.dataSet);
     });
   }
 
-  getDataFromchartPoints() {
+  getDataFromChartPoints(chartPoints: Array<ChartPoint>) {
     this.data.length = 0;
     this.dataSet.length = 0;
-    this.chartPoints.forEach(chartPoint => {
+    chartPoints.forEach(chartPoint => {
       this.data.push(chartPoint.date);
       this.dataSet.push(chartPoint.weight);
     });
+    this.dataObs.next(this.data);
+    this.dataSetObs.next(this.dataSet);
+    this.chartTitleObs.next(this.chartTitle);
   }
 
   getDataObs(): Observable<Array<Date>> {

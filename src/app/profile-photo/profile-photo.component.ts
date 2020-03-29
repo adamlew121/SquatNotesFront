@@ -34,10 +34,12 @@ export class ProfilePhotoComponent implements OnInit {
 
   loadPhoto(idUser) {
     this.imageService.loadImage(idUser).subscribe(res => {
-      this.imageFromDb = res;
-      const reader = new FileReader();
-      reader.onload = (e: any) => this.imgSrc = e.target.result;
-      reader.readAsDataURL(this.imageFromDb);
+      if (res != null) {
+        this.imageFromDb = res;
+        const reader = new FileReader();
+        reader.onload = (e: any) => this.imgSrc = e.target.result;
+        reader.readAsDataURL(this.imageFromDb);
+      }
     });
   }
 
