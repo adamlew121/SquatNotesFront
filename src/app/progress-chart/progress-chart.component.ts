@@ -1,6 +1,7 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Chart} from 'chart.js';
 import {ProgressService} from '../services/progress.service';
+import {ChartData} from '../models/chart-data';
 
 
 @Component({
@@ -8,28 +9,14 @@ import {ProgressService} from '../services/progress.service';
   templateUrl: './progress-chart.component.html',
   styleUrls: ['./progress-chart.component.css']
 })
-export class ProgressChartComponent implements OnInit, OnChanges {
+export class ProgressChartComponent implements OnInit {
 
   chart;
-  data = [];
-  dataSet = [];
-  chartTitle = 'aaaaaa';
+  chartData: ChartData = new ChartData();
 
   constructor(private progressService: ProgressService) {
-    this.progressService.getDataObs().subscribe((data: Array<Date>) => {
-      this.data = data;
-      if (this.chart) {
-        this.chart.update();
-      }
-    });
-    this.progressService.getDataSetObs().subscribe((dataSet: Array<number>) => {
-      this.dataSet = dataSet;
-      if (this.chart) {
-        this.chart.update();
-      }
-    });
-    this.progressService.getTitleObs().subscribe((title: string) => {
-      this.chartTitle = title;
+    this.progressService.getCharDataObs().subscribe((chartData: ChartData) => {
+      this.chartData = chartData;
       if (this.chart) {
         this.chart.update();
       }
@@ -48,26 +35,21 @@ export class ProgressChartComponent implements OnInit, OnChanges {
         maintainAspectRatio: true,
         title: {
           display: true,
-          text: this.chartTitle
+          text: this.chartData.chartTitle
         },
       },
       data: {
-        labels: this.data,
+        labels: this.chartData.data,
         datasets: [
           {
             type: 'line',
             backgroundColor: 'rgba(0,0,255,0.4)',
             borderColor: 'rgba(0,0,255,0.4)',
-            data: this.dataSet,
+            data: this.chartData.dataSet,
             fill: false,
           }
         ]
       }
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('dupa');
-    console.log(changes);
   }
 }

@@ -2,54 +2,41 @@ import {Injectable} from '@angular/core';
 import {HttpService} from './http.service';
 import {ChartPoint} from '../models/chart-point';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {ChartData} from '../models/chart-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgressService {
 
-  private data: Array<Date> = [];
-  private dataSet: Array<number> = [];
-  private chartTitle = '';
+  private chartData: ChartData = new ChartData();
 
-  private dataObs = new BehaviorSubject<Array<Date>>(this.data);
-  private dataSetObs = new BehaviorSubject<Array<number>>(this.dataSet);
-  private chartTitleObs = new BehaviorSubject<string>(this.chartTitle);
+  private chartDataObs = new BehaviorSubject<ChartData>(this.chartData);
 
   constructor(private httpService: HttpService) {
   }
 
   getChartPoints(idUser: number, exerciseName: string) {
     this.httpService.getChartPoints(idUser, exerciseName).subscribe(chartPoints => {
-      this.chartTitle = exerciseName;
-      console.log(chartPoints);
+      this.chartData.chartTitle = exerciseName;
+      // console.log(chartPoints);
       this.getDataFromChartPoints(chartPoints);
-      console.log(this.data);
-      console.log(this.dataSet);
+      // console.log(this.chartData.data);
+      // console.log(this.chartData.dataSet);
     });
   }
 
   getDataFromChartPoints(chartPoints: Array<ChartPoint>) {
-    this.data.length = 0;
-    this.dataSet.length = 0;
+    this.chartData.data.length = 0;
+    this.chartData.dataSet.length = 0;
     chartPoints.forEach(chartPoint => {
-      this.data.push(chartPoint.date);
-      this.dataSet.push(chartPoint.weight);
+      this.chartData.data.push(chartPoint.date);
+      this.chartData.dataSet.push(chartPoint.weight);
     });
-    this.dataObs.next(this.data);
-    this.dataSetObs.next(this.dataSet);
-    this.chartTitleObs.next(this.chartTitle);
+    this.chartDataObs.next(this.chartData);
   }
 
-  getDataObs(): Observable<Array<Date>> {
-    return this.dataObs.asObservable();
-  }
-
-  getDataSetObs(): Observable<Array<number>> {
-    return this.dataSetObs.asObservable();
-  }
-
-  getTitleObs(): Observable<string> {
-    return this.chartTitleObs.asObservable();
+  getCharDataObs(): Observable<ChartData> {
+    return this.chartDataObs.asObservable();
   }
 }
