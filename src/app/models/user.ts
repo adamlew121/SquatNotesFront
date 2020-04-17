@@ -8,4 +8,5 @@ export class User {
   password: string;
   dateOfBirthday: Date;
   sex: string;
+  profilePicture: any;
 }

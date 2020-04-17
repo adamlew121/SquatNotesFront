@@ -1,0 +1,17 @@
+<div class="d-flex listRow">
+  <div class="row">
+    <div *ngFor="let user of this.userService.getUserList()" class="col-lg-6 col-md-6 col-12">
+      <div class="profileBox row">
+        <div class="col-3">
+          <img *ngIf="getProfilePhoto(user)" [src]="user?.profilePicture" class="rounded-circle profilePhoto"/>
+        </div>
+        <div class="col-9">
+          <p>{{user.login}}</p>
+          <p>{{user.name}}</p>
+          <p>{{user.surname}}</p>
+          <p>{{user.dateOfBirthday}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

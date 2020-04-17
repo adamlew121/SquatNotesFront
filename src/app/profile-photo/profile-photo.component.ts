@@ -29,7 +29,14 @@ export class ProfilePhotoComponent implements OnInit {
       this.imgSrc = e.target.result;
       this.open(this.element, oldSrc);
     };
-    reader.readAsDataURL(event.target.files[0]);
+    const file = event.target.files[0];
+    if (!/image\/*/.test(file.type)) {
+      alert('Bad file extension');
+    } else if (file.size > 1048576) {
+      alert('Bad file size - max 1MB');
+    } else {
+      reader.readAsDataURL(file);
+    }
   }
 
   loadPhoto(idUser) {

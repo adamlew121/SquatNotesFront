@@ -27,17 +27,7 @@ export class ProgressChartComponent implements OnInit {
     // @ts-ignore
     this.chart = new Chart('line', {
       type: 'line',
-      options: {
-        legend: {
-          display: false
-        },
-        responsive: true,
-        maintainAspectRatio: true,
-        title: {
-          display: true,
-          text: this.chartData.chartTitle
-        },
-      },
+      options: this.options,
       data: {
         labels: this.chartData.data,
         datasets: [

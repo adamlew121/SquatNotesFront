@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from './http.service';
-import {ChartPoint} from '../models/chart-point';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ChartData} from '../models/chart-data';
 
@@ -18,25 +17,18 @@ export class ProgressService {
 
   getChartPoints(idUser: number, exerciseName: string) {
     this.httpService.getChartPoints(idUser, exerciseName).subscribe(chartPoints => {
+      this.chartData.data.length = 0;
+      this.chartData.dataSet.length = 0;
       this.chartData.chartTitle = exerciseName;
-      // console.log(chartPoints);
-      this.getDataFromChartPoints(chartPoints);
-      // console.log(this.chartData.data);
-      // console.log(this.chartData.dataSet);
+      chartPoints.forEach(chartPoint => {
+        this.chartData.data.push(chartPoint.date);
+        this.chartData.dataSet.push(chartPoint.weight);
+      });
+      this.chartDataObs.next(this.chartData);
     });
   }
 
-  getDataFromChartPoints(chartPoints: Array<ChartPoint>) {
-    this.chartData.data.length = 0;
-    this.chartData.dataSet.length = 0;
-    chartPoints.forEach(chartPoint => {
-      this.chartData.data.push(chartPoint.date);
-      this.chartData.dataSet.push(chartPoint.weight);
-    });
-    this.chartDataObs.next(this.chartData);
-  }
-
-  getCharDataObs(): Observable<ChartData> {
+  getChartDataObs(): Observable<ChartData> {
     return this.chartDataObs.asObservable();
   }
 }

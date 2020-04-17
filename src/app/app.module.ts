@@ -32,6 +32,7 @@ import {Ng5SliderModule} from 'ng5-slider';
 import { SuperSetAddComponent } from './super-set-add/super-set-add.component';
 import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 import { ExerciseAddComponent } from './exercise-add/exercise-add.component';
+import { ProfileListComponent } from './profile-list/profile-list.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ExerciseAddComponent } from './exercise-add/exercise-add.component';
     TrainingAddComponent,
     SuperSetAddComponent,
     ExerciseListComponent,
-    ExerciseAddComponent
+    ExerciseAddComponent,
+    ProfileListComponent
   ],
   imports: [
     BrowserModule,

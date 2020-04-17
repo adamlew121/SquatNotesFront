@@ -48,6 +48,11 @@ export class HttpService {
   getUserByLoginAndPassword(login: string, password: string): Observable<User> {
     return this.http.get<User>(this.URL + 'user?login=' + login + '&password=' + password);
   }
+
+  getUsers(): Observable<Array<User>> {
+    return this.http.get<Array<User>>(this.URL + 'users');
+  }
+
   postUser(dataObj): Observable<User> {
     return this.http.post<User>(this.URL + 'user', dataObj);
   }

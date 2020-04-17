@@ -35,4 +35,10 @@ export class HttpTesterComponent {
     });
   }
 
+  getUsers() {
+    this.httpService.getUsers().subscribe(users => {
+      console.log(users);
+    });
+  }
+
 }
