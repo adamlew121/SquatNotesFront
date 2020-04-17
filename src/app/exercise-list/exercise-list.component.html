@@ -4,15 +4,12 @@
   <table class="table table-hover">
     <thead>
     <tr>
-      <th>#</th>
       <th>Exercise name</th>
       <th>Target Muscles</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let exercise of this.exerciseService.getExerciseList()">
-
-      <td>{{ exercise.id }}</td>
       <td> {{ exercise.name }}</td>
       <td> {{ getMuscleNames(exercise.targetMuscles) }}</td>
     </tr>

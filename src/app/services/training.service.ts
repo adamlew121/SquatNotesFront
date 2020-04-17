@@ -1,12 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from './http.service';
 import {Training} from '../models/training';
-import {ChartPoint} from '../models/chart-point';
-import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {User} from '../models/user';
-import {AppService} from './app.service';
-import {Exercise} from '../models/exercise';
 import {SuperSet} from '../models/super-set';
 
 @Injectable({
@@ -16,11 +11,9 @@ export class TrainingService {
 
   private trainingList: Array<Training> = [];
   private selectedTraining: Training;
-  private exerciseList: Array<Exercise> = [];
   private superSets: Array<SuperSet> = [];
-  fakeUser: User;
 
-  constructor(private httpService: HttpService, private appService: AppService, private router: Router) { }
+  constructor(private httpService: HttpService, private router: Router) { }
 
   getTrainingsByUser(idUser: number) {
     this.httpService.getTrainingsByUser(idUser).subscribe(trainings => {
@@ -41,19 +34,13 @@ export class TrainingService {
     return this.trainingList;
   }
 
-  getExerciseList(): Array<Exercise> {
-    return this.exerciseList;
-  }
-
   deleteTraining(selectedTraining: Training): void {
     console.log('deleteTraining in service');
     this.httpService.deleteTraining(parseInt(localStorage.getItem('tempUserId'), 10), selectedTraining).subscribe(
       data => {
         this.getTrainingsByUser(parseInt(localStorage.getItem('tempUserId'), 10));
-        console.log('weszlo: ' + data);
       },
       error => {
-        console.log('nope');
         console.log(error);
       }
     );

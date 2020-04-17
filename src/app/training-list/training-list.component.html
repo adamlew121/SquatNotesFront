@@ -3,7 +3,6 @@
   <table class="table table-hover">
     <thead>
     <tr>
-      <th>#</th>
       <th>Training name</th>
       <th>Date</th>
       <th>Difficulty</th>
@@ -12,8 +11,6 @@
     </thead>
     <tbody>
     <tr *ngFor="let training of this.trainingService.getTrainingList()">
-
-      <td>{{ training.id }}</td>
       <td> {{ training.name }}</td>
       <td> {{ training.date | date: 'shortDate' }}</td>
       <td> {{ training.difficulty }}</td>

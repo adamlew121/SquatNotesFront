@@ -19,7 +19,7 @@ export class ProfilePhotoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadPhoto(1);
+    this.loadPhoto(parseInt(localStorage.getItem('tempUserId'), 10));
   }
 
   onFileChanged(event) {
@@ -62,7 +62,7 @@ export class ProfilePhotoComponent implements OnInit {
   selectedImage(event): void {
     this.imgSrc = event.src;
     this.selectedFile = event.file;
-    this.imageService.uploadImage(1, this.selectedFile);
+    this.imageService.uploadImage(parseInt(localStorage.getItem('tempUserId'), 10), this.selectedFile);
     this.modalReference.close();
   }
 }

@@ -13,11 +13,23 @@ export class ProgressChartComponent implements OnInit {
 
   chart;
   chartData: ChartData = new ChartData();
+  options = {
+    legend: {
+      display: false
+    },
+    responsive: true,
+    maintainAspectRatio: true,
+    title: {
+      display: true,
+      text: this.chartData.chartTitle
+    }
+  };
 
   constructor(private progressService: ProgressService) {
-    this.progressService.getCharDataObs().subscribe((chartData: ChartData) => {
+    this.progressService.getChartDataObs().subscribe((chartData: ChartData) => {
       this.chartData = chartData;
       if (this.chart) {
+        this.chart.options.title.text = chartData.chartTitle;
         this.chart.update();
       }
     });
