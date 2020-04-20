@@ -1,0 +1,15 @@
+#filterBox {
+  width: 100%;
+}
+
+.inputIconContainer {
+  height: 100%;
+}
+
+#genderRadio * {
+  margin: 0 5px 0 5px;
+}
+
+#sortOption {
+  font-family: Arial, FontAwesome, serif;
+}

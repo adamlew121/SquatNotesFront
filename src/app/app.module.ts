@@ -33,6 +33,7 @@ import { SuperSetAddComponent } from './super-set-add/super-set-add.component';
 import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 import { ExerciseAddComponent } from './exercise-add/exercise-add.component';
 import { ProfileListComponent } from './profile-list/profile-list.component';
+import { ProfileListFilterComponent } from './profile-list-filter/profile-list-filter.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
     SuperSetAddComponent,
     ExerciseListComponent,
     ExerciseAddComponent,
-    ProfileListComponent
+    ProfileListComponent,
+    ProfileListFilterComponent
   ],
   imports: [
     BrowserModule,

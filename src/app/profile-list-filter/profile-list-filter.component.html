@@ -1,0 +1,37 @@
+<form id="filterBox" [formGroup]="filters">
+  <div class="border border-secondary rounded-lg m-3 p-3 row">
+    <div class="input-group mb-3 col-lg-3 col-md-3 col-6">
+      <div class="input-group-append d-flex justify-content-center align-items-center">
+        <span class="input-group-text inputIconContainer"><i class="fa fa-search"></i></span>
+      </div>
+      <input type="text" class="form-control" formControlName="search" placeholder="Search" (input)="handleFilter()" aria-label="Search">
+    </div>
+    <div class="input-group mb-3 col-lg-2 col-md-3 col-4">
+      <div class="input-group-prepend">
+        <div class="input-group-append d-flex justify-content-center align-items-center">
+        <span id="genderRadio" class="input-group-text inputIconContainer">
+          <i class="fas fa-male"></i>
+          <input type="checkbox" formControlName="genderOptionMale" (change)="handleFilter()"
+                 aria-label="Radio button - option male" [checked]="true">
+          <i>|</i>
+          <i class="fas fa-female"></i>
+          <input type="checkbox" formControlName="genderOptionFemale" (change)="handleFilter()"
+                 aria-label="Radio button - option female" [checked]="true">
+        </span>
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3 col-lg-3 col-md-3 col-6">
+      <div class="input-group-append">
+        <span class="input-group-text"><i class="fas fa-sort"></i></span>
+      </div>
+      <select id="sortOption" formControlName="sortBy" (change)="handleFilter()" class="form-control" aria-label="Sort by">
+        <option value="" disabled selected>Sort by...</option>
+        <option value="nameASC">&#xf15d; Last name ASC</option>
+        <option value="nameDESC">&#xf15e; Last name DESC</option>
+        <option value="advDown">&#xf160; Advanced down</option>
+        <option value="advUp">&#xf161; Advanced up</option>
+      </select>
+    </div>
+  </div>
+</form>

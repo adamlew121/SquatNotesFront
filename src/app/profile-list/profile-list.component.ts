@@ -11,8 +11,13 @@ import {User} from '../models/user';
 })
 export class ProfileListComponent implements OnInit {
 
+  private userList: Array<User> = [];
+
   constructor(private userService: UserService, private imageService: ImageService, private router: Router) {
     this.userService.loadUserList();
+    this.userService.getUserList().subscribe(users => {
+      this.userList = users;
+    });
   }
 
   ngOnInit() {

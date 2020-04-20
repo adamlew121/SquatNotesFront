@@ -1,9 +1,10 @@
 <div class="d-flex listRow">
-  <div class="row">
-    <div *ngFor="let user of this.userService.getUserList()" class="col-lg-6 col-md-6 col-12">
+  <div class="row w-100">
+    <app-profile-list-filter class="col-12"></app-profile-list-filter>
+    <div *ngFor="let user of userList" class="col-lg-6 col-md-6 col-12">
       <div class="profileBox row">
         <div class="col-3">
-          <img *ngIf="getProfilePhoto(user)" [src]="user?.profilePicture" class="rounded-circle profilePhoto"/>
+          <img *ngIf="getProfilePhoto(user)" [src]="user?.profilePicture" class="rounded-circle profilePhoto" alt="profile image"/>
         </div>
         <div class="col-9">
           <p>{{user.login}}</p>
