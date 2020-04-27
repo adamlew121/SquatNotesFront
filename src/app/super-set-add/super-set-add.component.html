@@ -1,5 +1,5 @@
 
-<button class="btn btn-success" (click)="this.open(content);">Add new SuperSet</button>
+<button class="btn btn-info" (click)="this.open(content);">Add new SuperSet</button>
 <div *ngFor="let superSet of this.superSets; let i = index">
   <h5>Super Set #{{i + 1}}</h5> <button class="btn btn-danger" (click)="this.deleteSuperSet(i);">Delete</button>
 <table class="table table-hover">
@@ -33,6 +33,7 @@
         <th>Weight</th>
         <th>Reps</th>
         <th>RPE</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -42,6 +43,7 @@
         <td>{{ singleSet.weight }}</td>
         <td>{{ singleSet.reps }}</td>
         <td>{{ singleSet.rpe }}</td>
+        <td> <button class="btn btn-warning" (click)="this.deleteSet(singleSet);">Remove</button></td>
       </tr>
       </tbody>
     </table>
@@ -53,19 +55,19 @@
     </div>
     <div class="form-group">
     <label>Weight</label>
-    <input [(ngModel)]="weight" class="form-control">
+    <input [(ngModel)]="weight" type="number" class="form-control">
     </div>
     <div class="form-group">
     <label>Reps</label>
-    <input [(ngModel)]="reps" class="form-control">
+    <input [(ngModel)]="reps" type="number" class="form-control">
     </div>
     <div class="form-group">
     <label>RPE</label>
-    <input [(ngModel)]="rpe" class="form-control">
+    <input [(ngModel)]="rpe" type="number" class="form-control">
     </div>
     <p>
-    <button class="btn btn-info" (click)="this.addSet();">Add new set</button>
-    <button class="btn btn-success" (click)="this.saveSuperSet();">Save this SuperSet</button>
+    <button class="btn btn-info" (click)="this.addSet();">+</button>
+    <button class="btn btn-success float-right" (click)="this.saveSuperSet();">Finish</button>
     </p>
 
 

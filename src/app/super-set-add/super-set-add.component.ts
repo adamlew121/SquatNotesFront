@@ -7,6 +7,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpService} from '../services/http.service';
 import {Exercise} from '../models/exercise';
 import {TrainingService} from '../services/training.service';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-super-set-add',
@@ -45,18 +46,30 @@ export class SuperSetAddComponent implements OnInit {
   }
 
   addSet() {
-    const singleSet: SingleSet = ({exercise: this.selectedExercise, weight: this.weight, reps: this.reps, rpe: this.rpe});
+    if (isNumber(this.weight) && isNumber(this.reps) && isNumber(this.rpe) && this.selectedExercise !== undefined) {
+      console.log(this.selectedExercise);
+      const singleSet: SingleSet = ({exercise: this.selectedExercise, weight: this.weight, reps: this.reps, rpe: this.rpe});
 
+      const singleSets = this.singleSetsObs.getValue();
+      singleSets.push(singleSet);
+      this.singleSetsObs.next(singleSets);
+
+      this.reset();
+      }
+  }
+
+  deleteSet(selectedSet: SingleSet) {
     const singleSets = this.singleSetsObs.getValue();
-    singleSets.push(singleSet);
+    const index = singleSets.indexOf(selectedSet);
+    singleSets.splice(index, 1);
     this.singleSetsObs.next(singleSets);
-
-    this.reset();
   }
 
   selectExercise(exercise: Exercise) {
-    this.selectedExercise = exercise;
-    this.selectedExerciseName = exercise.name;
+    if (exercise !== undefined) {
+      this.selectedExercise = exercise;
+      this.selectedExerciseName = exercise.name;
+    }
   }
 
   saveSuperSet() {
@@ -83,12 +96,14 @@ export class SuperSetAddComponent implements OnInit {
   }
 
   open(content) {
+    localStorage.setItem('activeForm', 'super-set-add');
     console.log(this.exercises);
     this.modalReference = this.modalService.open(content);
   }
 
   close() {
     this.modalReference.close();
+    localStorage.removeItem('activeForm');
   }
 
   getSingleSetsObs(): Observable<Array<SingleSet>> {

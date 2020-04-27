@@ -3,7 +3,7 @@
 
 <ng-template #content let-modal>
   <div class="container align-content-center w-75">
-  <form [formGroup]="addTrainingForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="addTrainingForm" (ngSubmit)="this.onSubmit()">
     <div class="form-group">
       <label for="name">Training's name</label>
       <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />

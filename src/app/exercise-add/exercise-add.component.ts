@@ -1,14 +1,17 @@
 import { ExerciseService } from './../services/exercise.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Options } from 'ng5-slider';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from '../services/alert.service';
 import { TrainingService } from '../services/training.service';
-import { first } from 'rxjs/operators';
+import { first, debounceTime } from 'rxjs/operators';
 import { Muscle } from '../models/muscle';
+import { Subject } from 'rxjs';
+import { Exercise } from '../models/exercise';
+
 
 @Component({
   selector: 'app-exercise-add',
@@ -27,6 +30,10 @@ export class ExerciseAddComponent implements OnInit {
 
   targetMuscles: Array<Muscle> = [];
 
+  private _warning = new Subject<string>();
+  warningMessage = '';
+
+
 
 
   constructor(private formBuilder: FormBuilder,
@@ -38,10 +45,15 @@ export class ExerciseAddComponent implements OnInit {
               private trainingService: TrainingService) { }
 
   ngOnInit() {
+    this._warning.subscribe(message => this.warningMessage = message);
+    this._warning.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.warningMessage = '');
+
     this.addExerciseForm = this.formBuilder.group({
       name: ['', Validators.required],
       user: [JSON.parse(localStorage.getItem('currentUser')), Validators.required],
-      targetMuscles: [this.targetMuscles, Validators.required]
+      targetMuscles: [this.targetMuscles]
     });
   }
 
@@ -59,36 +71,59 @@ export class ExerciseAddComponent implements OnInit {
   get f() { return this.addExerciseForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
-    this.f.targetMuscles.setValue(this.targetMuscles);
-    if (this.addExerciseForm.invalid) {
-      console.log('niepoprawny form exercise-add');
-      return;
+    if (localStorage.getItem('activeForm') === 'exercise-add' || localStorage.getItem('activeForm') === null) {
+      this.submitted = true;
+      this.f.targetMuscles.setValue(this.targetMuscles);
+      if (this.addExerciseForm.invalid) {
+        console.log('niepoprawny form exercise-add');
+        return;
+      }
+      // customowe walidatory
+      console.log('1');
+      if (this.targetMuscles.length === 0) {
+        this._warning.next('Choose at least one muscle');
+        return;
+      } else {
+        const exercises = this.exerciseService.getExerciseList();
+        console.log(exercises);
+        for (let i = 0, len = exercises.length; i < len; i++) {
+          console.log('3');
+          console.log(exercises[i].name);
+          if (exercises[i].name === this.f.name.value) {
+            this._warning.next('Exercise\'s name is already used');
+            return;
+          }
+        }
+      }
+      console.log('4');
+
+      this.loading = true;
+      console.log(this.addExerciseForm.value);
+      this.httpService.createExercise(this.addExerciseForm.value)
+        .pipe(first())
+        .subscribe(
+          data => {
+            this.alertService.success('Exercise created successfull', true);
+            this.close();
+            this.exerciseService.refreshExerciseList();
+            this.loading = false;
+          },
+          error => {
+            this.alertService.error(error);
+            this.loading = false;
+          });
+      }
     }
 
-    this.loading = true;
-    console.log(this.addExerciseForm.value);
-    this.httpService.createExercise(this.addExerciseForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Exercise created successfull', true);
-          this.close();
-          this.exerciseService.refreshExerciseList();
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
-  }
-
   open(content) {
+    localStorage.setItem('activeForm', 'exercise-add');
     this.targetMuscles = [];
     this.modalReference = this.modalService.open(content, {size: 'lg'});
   }
 
   close() {
     this.modalReference.close();
+    localStorage.removeItem('activeForm');
   }
 
   formatLabel(value: number) {

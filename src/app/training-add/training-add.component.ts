@@ -51,35 +51,41 @@ export class TrainingAddComponent implements OnInit {
 
   get f() { return this.addTrainingForm.controls; }
 
-  onSubmit() {
-    this.submitted = true;
-    this.f.difficulty.setValue(this.difficulty);
-    this.f.superSetList.setValue(this.trainingService.getSuperSets());
-    if (this.addTrainingForm.invalid) {
-      return;
-    }
+  onSubmit(arg: string) {
+    console.log(arg + ' -> submit z training-add');
+    if (localStorage.getItem('activeForm') === 'training-add' || localStorage.getItem('activeForm') === null) {
+      this.submitted = true;
+      this.f.difficulty.setValue(this.difficulty);
+      this.f.superSetList.setValue(this.trainingService.getSuperSets());
+      if (this.addTrainingForm.invalid) {
+        return;
+      }
 
-    this.loading = true;
-    console.log(this.addTrainingForm.value);
-    this.httpService.createTraining(this.addTrainingForm.value, parseInt(localStorage.getItem('tempUserId'), 10))
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Training created successfull', true);
-          this.close();
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
-    this.trainingService.getTrainingsByUser(parseInt(localStorage.getItem('tempUserId'), 10));
+      this.loading = true;
+      console.log(this.addTrainingForm.value);
+      this.httpService.createTraining(this.addTrainingForm.value, parseInt(localStorage.getItem('tempUserId'), 10))
+        .pipe(first())
+        .subscribe(
+          data => {
+            this.alertService.success('Training created successfull', true);
+            this.close();
+            this.loading = false;
+          },
+          error => {
+            this.alertService.error(error);
+            this.loading = false;
+          });
+      this.trainingService.getTrainingsByUser(parseInt(localStorage.getItem('tempUserId'), 10));
+      }
   }
 
   open(content) {
+    localStorage.setItem('activeForm', 'training-add');
     this.modalReference = this.modalService.open(content, {size: 'lg'});
   }
 
   close() {
+    localStorage.removeItem('activeForm');
     this.modalReference.close();
   }
 

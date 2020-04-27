@@ -34,6 +34,7 @@ import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 import { ExerciseAddComponent } from './exercise-add/exercise-add.component';
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileListFilterComponent } from './profile-list-filter/profile-list-filter.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { ProfileListFilterComponent } from './profile-list-filter/profile-list-f
     ReactiveFormsModule,
     ChartsModule,
     NgbModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpService, AppService, AuthenticationService, AuthGuard, AlertService, ProgressService, TrainingService],
   bootstrap: [AppComponent]
