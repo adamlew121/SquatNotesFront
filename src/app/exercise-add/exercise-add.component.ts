@@ -30,6 +30,7 @@ export class ExerciseAddComponent implements OnInit {
 
   targetMuscles: Array<Muscle> = [];
 
+  // tslint:disable-next-line: variable-name
   private _warning = new Subject<string>();
   warningMessage = '';
 
@@ -79,23 +80,20 @@ export class ExerciseAddComponent implements OnInit {
         return;
       }
       // customowe walidatory
-      console.log('1');
       if (this.targetMuscles.length === 0) {
         this._warning.next('Choose at least one muscle');
         return;
-      } else {
-        const exercises = this.exerciseService.getExerciseList();
-        console.log(exercises);
-        for (let i = 0, len = exercises.length; i < len; i++) {
-          console.log('3');
-          console.log(exercises[i].name);
-          if (exercises[i].name === this.f.name.value) {
-            this._warning.next('Exercise\'s name is already used');
-            return;
-          }
+      }
+
+      const exercises = this.exerciseService.getExerciseList();
+      console.log(exercises);
+      for (let i = 0, len = exercises.length; i < len; i++) {
+        console.log(exercises[i].name);
+        if (exercises[i].name === this.f.name.value) {
+          this._warning.next('Exercise\'s name is already used');
+          return;
         }
       }
-      console.log('4');
 
       this.loading = true;
       console.log(this.addExerciseForm.value);

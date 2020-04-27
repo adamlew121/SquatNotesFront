@@ -46,7 +46,7 @@ export class SuperSetAddComponent implements OnInit {
   }
 
   addSet() {
-    if (isNumber(this.weight) && isNumber(this.reps) && isNumber(this.rpe) && this.selectedExercise !== undefined) {
+    if (this.weight > 0 && this.reps > 0 && this.rpe > 0 && this.selectedExercise !== undefined) {
       console.log(this.selectedExercise);
       const singleSet: SingleSet = ({exercise: this.selectedExercise, weight: this.weight, reps: this.reps, rpe: this.rpe});
 

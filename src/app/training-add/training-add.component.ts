@@ -51,8 +51,7 @@ export class TrainingAddComponent implements OnInit {
 
   get f() { return this.addTrainingForm.controls; }
 
-  onSubmit(arg: string) {
-    console.log(arg + ' -> submit z training-add');
+  onSubmit() {
     if (localStorage.getItem('activeForm') === 'training-add' || localStorage.getItem('activeForm') === null) {
       this.submitted = true;
       this.f.difficulty.setValue(this.difficulty);
