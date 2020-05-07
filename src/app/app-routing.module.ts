@@ -1,3 +1,5 @@
+import { SupportChatComponent } from './support-chat/support-chat.component';
+import { AuthSuperGuard } from './guard/AuthSuper.guard';
 import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
@@ -11,19 +13,21 @@ import {RegisterComponent} from './register/register.component';
 import {AuthGuard} from './guard/Auth.guard';
 import {ProgressComponent} from './progress/progress.component';
 import {ProfileListComponent} from './profile-list/profile-list.component';
+import { AuthUserGuard } from './guard/AuthUser.guard';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'training-list', component: TrainingListComponent, canActivate: [AuthGuard]},
+  {path: 'training-list', component: TrainingListComponent, canActivate: [AuthUserGuard]},
   {path: 'support', component: SupportComponent, canActivate: [AuthGuard]},
-  {path: 'training-detail', component: TrainingDetailComponent, canActivate: [AuthGuard]},
-  {path: 'progress', component: ProgressComponent, canActivate: [AuthGuard]},
+  {path: 'training-detail', component: TrainingDetailComponent, canActivate: [AuthUserGuard]},
+  {path: 'progress', component: ProgressComponent, canActivate: [AuthUserGuard]},
   {path: 'http-tester', component: HttpTesterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'exercise-list', component: ExerciseListComponent, canActivate: [AuthGuard]},
+  {path: 'exercise-list', component: ExerciseListComponent, canActivate: [AuthUserGuard]},
   {path: 'profile-list', component: ProfileListComponent, canActivate: [AuthGuard]},
+  {path: 'support-chat', component: SupportChatComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: ''}
 ];
 

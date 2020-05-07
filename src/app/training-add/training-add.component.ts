@@ -69,6 +69,7 @@ export class TrainingAddComponent implements OnInit {
             this.alertService.success('Training created successfull', true);
             this.close();
             this.loading = false;
+            this.trainingService.getTrainingsByUser(parseInt(localStorage.getItem('tempUserId'), 10));
           },
           error => {
             this.alertService.error(error);

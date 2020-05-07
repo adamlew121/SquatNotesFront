@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {ImageService} from '../services/image.service';
-import {User} from '../models/user';
+import {Account} from '../models/account';
 
 @Component({
   selector: 'app-profile-list',
@@ -11,7 +11,7 @@ import {User} from '../models/user';
 })
 export class ProfileListComponent implements OnInit {
 
-  private userList: Array<User> = [];
+  private userList: Array<Account> = [];
 
   constructor(private userService: UserService, private imageService: ImageService, private router: Router) {
     this.userService.loadUserList();
@@ -23,7 +23,7 @@ export class ProfileListComponent implements OnInit {
   ngOnInit() {
   }
 
-  getProfilePhoto(user: User) {
+  getProfilePhoto(user: Account) {
     if (!user.profilePicture) {
       user.profilePicture = 'assets/img/default_profile_photo.png';
       this.imageService.loadImage(user.id).subscribe(res => {

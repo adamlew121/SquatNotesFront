@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from '../models/user';
+import {Account} from '../models/account';
 import {HttpService} from './http.service';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {FormGroup} from '@angular/forms';
@@ -21,9 +21,9 @@ enum SortOption {
 })
 export class UserService {
 
-  private userList: Array<User> = [];
-  private filteredUserList: Array<User> = [];
-  private filteredUserListObs = new BehaviorSubject<Array<User>>(this.filteredUserList);
+  private userList: Array<Account> = [];
+  private filteredUserList: Array<Account> = [];
+  private filteredUserListObs = new BehaviorSubject<Array<Account>>(this.filteredUserList);
 
   constructor(private httpService: HttpService) {
   }
@@ -56,15 +56,15 @@ export class UserService {
     this.filteredUserListObs.next(this.filteredUserList);
   }
 
-  getUserList(): Observable<Array<User>> {
+  getUserList(): Observable<Array<Account>> {
     return this.filteredUserListObs.asObservable();
   }
 
-  filterByGender(userList: Array<User>, gender: Gender) {
+  filterByGender(userList: Array<Account>, gender: Gender) {
     return userList.filter(user => user.sex === gender.toString());
   }
 
-  filterByContainWord(userList: Array<User>, word: string) {
+  filterByContainWord(userList: Array<Account>, word: string) {
     return userList.filter(user => {
       user.name = user.name.toUpperCase();
       word = word.toUpperCase();
@@ -72,7 +72,7 @@ export class UserService {
     });
   }
 
-  sortByOption(userList: Array<User>, option: SortOption) {
+  sortByOption(userList: Array<Account>, option: SortOption) {
     switch (option) {
       case SortOption.nameASC:
         return this.sortBySurnameASC(userList);
@@ -83,7 +83,7 @@ export class UserService {
     }
   }
 
-  sortBySurnameASC(userList: Array<User>) {
+  sortBySurnameASC(userList: Array<Account>) {
     return userList.sort((n1, n2) => {
       if (n1.surname > n2.surname) {
         return 1;
@@ -97,7 +97,7 @@ export class UserService {
     });
   }
 
-  sortBySurnameDESC(userList: Array<User>) {
+  sortBySurnameDESC(userList: Array<Account>) {
     return userList.sort((n1, n2) => {
       if (n1.surname > n2.surname) {
         return -1;
@@ -119,4 +119,16 @@ export class UserService {
   testFilterFEMALE() {
     this.filteredUserList = this.filterByGender(this.userList, Gender.FEMALE);
     this.filteredUserListObs.next(this.filteredUserList);  }
+
+
+  isSupport() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user.type === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
+
+

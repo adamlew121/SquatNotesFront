@@ -10,13 +10,13 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/">Home</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="isUser()" class="nav-item">
         <a class="nav-link" routerLink="/training-list">Trainings</a>
       </li>
-      <li class=nav-item>
+      <li *ngIf="isUser()" class=nav-item>
         <a class="nav-link" routerLink="/exercise-list">Exercises</a>
       </li>
-      <li class=nav-item>
+      <li *ngIf="isUser()" class=nav-item>
         <a class="nav-link" routerLink="/profile-list">Other users</a>
       </li>
 <!--      <li class="nav-item">-->
@@ -25,7 +25,9 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/http-tester">HttpTester</a>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/support">Support</a>
+      </li>
     </ul>
   </div>
 </nav>

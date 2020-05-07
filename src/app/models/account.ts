@@ -1,4 +1,5 @@
-export class User {
+import { ChatBox } from './chatbox';
+export class Account {
 
   id: number;
   name: string;
@@ -9,4 +10,6 @@ export class User {
   dateOfBirthday: Date;
   sex: string;
   profilePicture: any;
+  type: number;
+  chatboxList: ChatBox[];
 }

@@ -1,11 +1,14 @@
+import { Account } from './../models/account';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Exercise} from '../models/exercise';
 import {Observable} from 'rxjs';
 import {Training} from '../models/training';
 import {ChartPoint} from '../models/chart-point';
-import {User} from '../models/user';
 import { Muscle } from '../models/muscle';
+import { Message } from '../models/message';
+import { ChatBox } from '../models/chatbox';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,20 +44,28 @@ export class HttpService {
     return this.http.get<Array<Training>>(this.URL + 'user/' + idUser + '/training');
   }
 
+  getChatboxList(): Observable<Array<ChatBox>> {
+    return this.http.get<Array<ChatBox>>(this.URL + 'chatbox/all');
+  }
+
+  getChatboxListByUser(idUser: number): Observable<Array<ChatBox>> {
+    return this.http.get<Array<ChatBox>>(this.URL + 'chatbox/' + idUser);
+  }
+
   getChartPoints(idUser: number, exerciseName: string): Observable<Array<ChartPoint>> {
     return this.http.get<Array<ChartPoint>>(this.URL + 'user/' + idUser + '/progress?exerciseName=' + exerciseName);
   }
 
-  getUserByLoginAndPassword(login: string, password: string): Observable<User> {
-    return this.http.get<User>(this.URL + 'user?login=' + login + '&password=' + password);
+  getUserByLoginAndPassword(login: string, password: string): Observable<Account> {
+    return this.http.get<Account>(this.URL + 'user?login=' + login + '&password=' + password);
   }
 
-  getUsers(): Observable<Array<User>> {
-    return this.http.get<Array<User>>(this.URL + 'users');
+  getUsers(): Observable<Array<Account>> {
+    return this.http.get<Array<Account>>(this.URL + 'users');
   }
 
-  postUser(dataObj): Observable<User> {
-    return this.http.post<User>(this.URL + 'user', dataObj);
+  postUser(dataObj): Observable<Account> {
+    return this.http.post<Account>(this.URL + 'user', dataObj);
   }
 
   deleteTraining(idUser: number, training: Training) {
@@ -70,6 +81,14 @@ export class HttpService {
 
   createExercise(dataObj): Observable<Exercise> {
     return this.http.post<Exercise>(this.URL + 'exercise', dataObj);
+  }
+
+  createChatbox(dataObj): Observable<ChatBox> {
+    return this.http.post<ChatBox>(this.URL + 'chatbox', dataObj);
+  }
+
+  updateChatbox(dataObj): Observable<ChatBox> {
+    return this.http.patch<ChatBox>(this.URL + 'chatbox', dataObj);
   }
 
 

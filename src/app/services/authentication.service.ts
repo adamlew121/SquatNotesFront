@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpService} from './http.service';
-import {User} from '../models/user';
+import {Account} from '../models/account';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.httpService.getUserByLoginAndPassword(username, password).pipe(map((user: User) => {
+    return this.httpService.getUserByLoginAndPassword(username, password).pipe(map((user: Account) => {
       if (user) {
         console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));

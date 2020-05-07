@@ -1,3 +1,6 @@
+import { MessageService } from './services/message.service';
+import { AuthUserGuard } from './guard/AuthUser.guard';
+import { AuthSuperGuard } from './guard/AuthSuper.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -35,6 +38,8 @@ import { ExerciseAddComponent } from './exercise-add/exercise-add.component';
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileListFilterComponent } from './profile-list-filter/profile-list-filter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SupportChatComponent } from './support-chat/support-chat.component';
+import { SupportChatAddComponent } from './support-chat-add/support-chat-add.component';
 
 
 @NgModule({
@@ -58,7 +63,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ExerciseListComponent,
     ExerciseAddComponent,
     ProfileListComponent,
-    ProfileListFilterComponent
+    ProfileListFilterComponent,
+    SupportChatComponent,
+    SupportChatAddComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +78,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Ng5SliderModule,
     BrowserAnimationsModule
   ],
-  providers: [HttpService, AppService, AuthenticationService, AuthGuard, AlertService, ProgressService, TrainingService],
+  providers: [HttpService, AppService, AuthenticationService, AuthGuard, AuthSuperGuard, AuthUserGuard, AlertService, ProgressService, TrainingService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

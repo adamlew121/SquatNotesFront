@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Training} from '../models/training';
-import {User} from '../models/user';
+import {Account} from '../models/account';
 import {Router} from '@angular/router';
 import {HttpService} from './http.service';
 
@@ -11,7 +11,7 @@ export class AppService {
 
   private title = 'Squat Notes';
 
-  user: User;
+  user: Account;
 
   private selectedTraining: Training;
 

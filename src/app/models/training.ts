@@ -1,9 +1,9 @@
 import {SuperSet} from './super-set';
-import {User} from './user';
+import {Account} from './account';
 
 export class Training {
   id: number;
-  user: User;
+  user: Account;
   name: string;
   date: Date;
   difficulty: number;

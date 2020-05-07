@@ -1,9 +1,9 @@
 import {Muscle} from './muscle';
-import {User} from './user';
+import {Account} from './account';
 
 export class Exercise {
   id: number;
   name: string;
   targetMuscles: Muscle[];
-  author: User;
+  author: Account;
 }

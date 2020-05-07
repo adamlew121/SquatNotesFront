@@ -1,3 +1,5 @@
+import { UserService } from './../services/user.service';
+import { MessageService } from './../services/message.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupportComponent implements OnInit {
 
-  constructor() { }
+  constructor(private messageService: MessageService, private userService: UserService) {
+    this.messageService.loadChatboxList();
+  }
 
   ngOnInit() {
+
   }
 
 }
