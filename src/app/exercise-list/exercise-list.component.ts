@@ -10,7 +10,7 @@ import { Muscle } from '../models/muscle';
 export class ExerciseListComponent implements OnInit {
 
   constructor(private exerciseService: ExerciseService) {
-    this.exerciseService.refreshExerciseList();
+    this.exerciseService.getExercisesByUser(parseInt(localStorage.getItem('tempUserId'), 10));
   }
 
   getMuscleNames(muscles: Array<Muscle>) {
