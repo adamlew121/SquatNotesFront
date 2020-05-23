@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ImageService} from '../services/image.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -14,12 +14,16 @@ export class ProfilePhotoComponent implements OnInit {
   @ViewChild('content', {static: false})
   element: TemplateRef<any>;
   modalReference: any;
+  @Input()
+  idUser;
 
   constructor(private imageService: ImageService, private modalService: NgbModal) {
   }
 
   ngOnInit() {
-    this.loadPhoto(parseInt(localStorage.getItem('tempUserId'), 10));
+    if (this.idUser) {
+      this.loadPhoto(this.idUser);
+    }
   }
 
   onFileChanged(event) {

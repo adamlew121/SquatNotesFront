@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {ImageService} from '../services/image.service';
@@ -12,6 +12,9 @@ import {Account} from '../models/account';
 export class ProfileListComponent implements OnInit {
 
   private userList: Array<Account> = [];
+  private page = 1;
+  private pageSize = 20;
+  private maxSize = 10;
 
   constructor(private userService: UserService, private imageService: ImageService, private router: Router) {
     this.userService.loadUserList();
@@ -35,5 +38,9 @@ export class ProfileListComponent implements OnInit {
       });
     }
     return true;
+  }
+
+  selectProfile(idUser) {
+    this.router.navigate(['/profile', idUser] );
   }
 }

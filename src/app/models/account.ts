@@ -10,6 +10,7 @@ export class Account {
   dateOfBirthday: Date;
   sex: string;
   profilePicture: any;
+  advanced: number;
   type: number;
   chatboxList: ChatBox[];
 }

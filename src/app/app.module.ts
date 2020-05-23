@@ -40,6 +40,7 @@ import { ProfileListFilterComponent } from './profile-list-filter/profile-list-f
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SupportChatComponent } from './support-chat/support-chat.component';
 import { SupportChatAddComponent } from './support-chat-add/support-chat-add.component';
+import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { SupportChatAddComponent } from './support-chat-add/support-chat-add.com
     ProfileListComponent,
     ProfileListFilterComponent,
     SupportChatComponent,
-    SupportChatAddComponent
+    SupportChatAddComponent,
+    ProfileDetailsComponent
   ],
   imports: [
     BrowserModule,

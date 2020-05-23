@@ -1,18 +1,47 @@
 <div class="d-flex listRow">
   <div class="row w-100">
     <app-profile-list-filter class="col-12"></app-profile-list-filter>
-    <div *ngFor="let user of userList" class="col-lg-6 col-md-6 col-12">
-      <div class="profileBox row">
+    <div *ngFor="let user of userList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" class="col-lg-6 col-md-6 col-12">
+      <div class="profileBox row" (click)="selectProfile(user.id)">
         <div class="col-3">
           <img *ngIf="getProfilePhoto(user)" [src]="user?.profilePicture" class="rounded-circle profilePhoto" alt="profile image"/>
         </div>
-        <div class="col-9">
-          <p>{{user.login}}</p>
-          <p>{{user.name}}</p>
-          <p>{{user.surname}}</p>
-          <p>{{user.dateOfBirthday}}</p>
+        <div class="col-9 p-1">
+          <p>Login: {{user.login}}</p>
+          <p>{{user.name}} {{user.surname}}</p>
+          <p>{{user.dateOfBirthday | date}}</p>
+          Advanced: {{user.advanced}}
+          <div class="progress" style="background-color: #999999">
+            <div class="progress-bar" [ngClass]="userService.getAdvanced(user.advanced)" role="progressbar" style="overflow: visible;"
+                 [style.width]="user.advanced / 1000 * 100 + '%'"
+                 [attr.aria-valuenow]="user.advanced"
+                 aria-valuemin="0" aria-valuemax="1000">
+              <div>{{userService.getAdvanced(user.advanced)}}</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="pages">
+  <div id="page-list">
+    <ngb-pagination [collectionSize]="userList.length" [pageSize]="pageSize" [(page)]="page" [maxSize]="maxSize"
+                    [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-eye"></i></span>
+    </div>
+    <select id="page-size" class="form-control" [(ngModel)]="pageSize" aria-label="Page size">
+      <option value="" selected disabled>Number of visible accounts...</option>
+      <option [value]="6">6</option>
+      <option [value]="12">12</option>
+      <option [value]="18">18</option>
+      <option [value]="24">24</option>
+      <option [value]="36">36</option>
+      <option [value]="72">72</option>
+    </select>
   </div>
 </div>

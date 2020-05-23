@@ -16,6 +16,14 @@ enum SortOption {
   advUp = 'advUp'
 }
 
+enum Advanced {
+  NOVICE = 'Novice',
+  BEGINNER = 'Beginner',
+  INTERMEDIATE = 'Intermediate',
+  ADVANCED = 'Advanced',
+  EXPERT = 'Expert'
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +34,10 @@ export class UserService {
   private filteredUserListObs = new BehaviorSubject<Array<Account>>(this.filteredUserList);
 
   constructor(private httpService: HttpService) {
+  }
+
+  getUser(idUser): Observable<Account> {
+    return this.httpService.getUserById(idUser);
   }
 
   loadUserList() {
@@ -78,6 +90,10 @@ export class UserService {
         return this.sortBySurnameASC(userList);
       case SortOption.nameDESC:
         return this.sortBySurnameDESC(userList);
+      case SortOption.advDown:
+        return this.sortByAdvancedDown(userList);
+      case SortOption.advUp:
+        return this.sortByAdvancedUp(userList);
       default:
         return;
     }
@@ -111,15 +127,31 @@ export class UserService {
     });
   }
 
-  testFilterMALE() {
-    this.filteredUserList = this.filterByGender(this.userList, Gender.MALE);
-    this.filteredUserListObs.next(this.filteredUserList);
+  sortByAdvancedDown(userList: Array<Account>) {
+    return userList.sort((n1, n2) => {
+      if (n1.advanced > n2.advanced) {
+        return -1;
+      }
+
+      if (n1.advanced < n2.advanced) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
-  testFilterFEMALE() {
-    this.filteredUserList = this.filterByGender(this.userList, Gender.FEMALE);
-    this.filteredUserListObs.next(this.filteredUserList);  }
+  sortByAdvancedUp(userList: Array<Account>) {
+    return userList.sort((n1, n2) => {
+      if (n1.advanced < n2.advanced) {
+        return -1;
+      }
 
+      if (n1.advanced > n2.advanced) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 
   isSupport() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
@@ -127,6 +159,20 @@ export class UserService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  getAdvanced(advanced: number) {
+    if (advanced > 800) {
+      return Advanced.EXPERT;
+    } else if (advanced > 600) {
+      return Advanced.ADVANCED;
+    } else if (advanced > 400) {
+      return Advanced.INTERMEDIATE;
+    } else if (advanced > 100) {
+      return Advanced.BEGINNER;
+    } else {
+      return Advanced.NOVICE;
     }
   }
 }

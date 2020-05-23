@@ -1,6 +1,6 @@
 <div class="jumbotron" style="background-color: #fff; height: calc(95vh);">
   <div class="container align-content-center w-75 text-center">
-    <app-profile-photo></app-profile-photo>
+    <app-profile-photo [idUser]="this.appService.user?.id"></app-profile-photo>
     <h1>{{ this.appService.user?.name}} {{ this.appService.user?.surname}}</h1>
     <p class="lead">
       Email: {{ this.appService.user?.email}}
@@ -14,7 +14,7 @@
     <p class="lead">
       Sex: {{ this.appService.user?.sex}}
     </p>
-    <a class="btn btn-lg btn-primary" routerLink="/progress" role="button">My progress</a>
+    <a class="btn btn-lg btn-primary" [routerLink]="['/progress',  this.appService.user?.id]" role="button">My progress</a>
 
     <p><a [routerLink]="['/login']">Logout</a> </p>
   </div>

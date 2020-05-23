@@ -60,6 +60,10 @@ export class HttpService {
     return this.http.get<Account>(this.URL + 'user?login=' + login + '&password=' + password);
   }
 
+  getUserById(idUser: number): Observable<Account> {
+    return this.http.get<Account>(this.URL + 'user/' + idUser);
+  }
+
   getUsers(): Observable<Array<Account>> {
     return this.http.get<Array<Account>>(this.URL + 'users');
   }

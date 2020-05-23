@@ -9,25 +9,25 @@ import {HttpService} from './http.service';
 })
 export class AppService {
 
-  private title = 'Squat Notes';
+  title = 'Squat Notes';
+
+  benchPressBlackIcon = 'assets/img/benchPress.png';
+  benchPressWhiteIcon = 'assets/img/benchPressWhite.png';
+
+  deadliftBlackIcon = 'assets/img/deadlift.png';
+  deadliftWhiteIcon = 'assets/img/deadliftWhite.png';
+
+  squatBlackIcon = 'assets/img/squat.png';
+  squatWhiteIcon = 'assets/img/squatWhite.png';
+
+  ohpBlackIcon = 'assets/img/ohp.png';
+  ohpWhiteIcon = 'assets/img/ohpWhite.png';
+
+
+  logoSquatNotes = 'assets/img/logoSquatNotes.png';
 
   user: Account;
 
-  private selectedTraining: Training;
-
-  constructor(private router: Router, private httpService: HttpService) {
+  constructor() {
   }
-
-  getTitle(): string {
-    return this.title;
-  }
-
-
- // getUserByLoginAndPassword(login: string, password: string) {
- //   this.httpService.getUserByLoginAndPassword('TEST123', 'TEST123!').subscribe(user => {
- //     this.user = user;
- //     console.log(user);
- //   });
- // }
-
 }

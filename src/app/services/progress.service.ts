@@ -20,12 +20,13 @@ export class ProgressService {
       this.chartData.data.length = 0;
       this.chartData.dataSet.length = 0;
       this.chartData.chartTitle = exerciseName;
-      chartPoints.forEach(chartPoint => {
-        this.chartData.data.push(chartPoint.date);
-        this.chartData.dataSet.push(chartPoint.weight);
-      });
-      this.chartDataObs.next(this.chartData);
-    });
+      if (chartPoints) {
+        chartPoints.forEach(chartPoint => {
+          this.chartData.data.push(chartPoint.date);
+          this.chartData.dataSet.push(chartPoint.weight);
+        });
+        this.chartDataObs.next(this.chartData);
+      }});
   }
 
   getChartDataObs(): Observable<ChartData> {

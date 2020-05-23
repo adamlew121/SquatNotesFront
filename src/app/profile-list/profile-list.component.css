@@ -1,3 +1,22 @@
+.Novice {
+  background-color: #488cff;
+}
+
+.Beginner {
+  background-color: #11ad00;
+}
+
+.Intermediate {
+  background-color: #FF8E00;
+}
+
+.Advanced {
+  background-color: #FF0009;
+}
+
+.Expert {
+  background-color: #000;
+}
 .listRow {
   width: 95%;
   margin: auto;
@@ -16,4 +35,22 @@
 .profileBox:hover {
   background-color: #E4E4E4;
   cursor: pointer;
+}
+
+.pages {
+  width: 90%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+#page-size {
+  margin: 0;
+  max-width: 200px;
+}
+
+#page-list {
+  margin: 0 10px;
+
 }

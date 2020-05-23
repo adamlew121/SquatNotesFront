@@ -14,14 +14,16 @@ import {AuthGuard} from './guard/Auth.guard';
 import {ProgressComponent} from './progress/progress.component';
 import {ProfileListComponent} from './profile-list/profile-list.component';
 import { AuthUserGuard } from './guard/AuthUser.guard';
+import {ProfileDetailsComponent} from './profile-details/profile-details.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'profile/:id', component: ProfileDetailsComponent, canActivate: [AuthGuard]},
   {path: 'training-list', component: TrainingListComponent, canActivate: [AuthUserGuard]},
   {path: 'support', component: SupportComponent, canActivate: [AuthGuard]},
   {path: 'training-detail', component: TrainingDetailComponent, canActivate: [AuthUserGuard]},
-  {path: 'progress', component: ProgressComponent, canActivate: [AuthUserGuard]},
+  {path: 'progress/:id', component: ProgressComponent, canActivate: [AuthUserGuard]},
   {path: 'http-tester', component: HttpTesterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},

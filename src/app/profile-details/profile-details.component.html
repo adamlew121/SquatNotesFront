@@ -1,0 +1,52 @@
+<nav id="rightNavbar" class="navbar bg-dark navbar-dark position-fixed align-items-baseline">
+  <ul class="navbar-nav mt-5">
+    <li class="nav-item">
+      <a class="nav-link"  (click)="selectExercise('Bench press'); scroll(progressChart)">
+        <img [src]="benchPressIcon" class="navIcon" (mouseover)="changeIcon('Bench press')" (mouseout)="changeIcon('Bench press')">
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="selectExercise('OHP'); scroll(progressChart)">
+        <img [src]="ohpIcon" class="navIcon" (mouseover)="changeIcon('OHP')" (mouseout)="changeIcon('OHP')"/>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="selectExercise('Squat'); scroll(progressChart)">
+        <img [src]="squatIcon" class="navIcon" (mouseover)="changeIcon('Squat')" (mouseout)="changeIcon('Squat')"/>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="selectExercise('Deadlift'); scroll(progressChart)">
+        <img [src]="deadliftIcon" class="navIcon" (mouseover)="changeIcon('Deadlift')" (mouseout)="changeIcon('Deadlift')"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+<div id="profileContent" class="row">
+  <div class="jumbotron col-lg-4 col-12" style="background-color: #fff;">
+    <div class="container align-content-center w-100 text-center">
+      <img [src]="this.imgSrc" class="profilePhoto" alt="profilePhoto"/>
+      <h1>{{ this.user?.name}} {{ this.user?.surname}}</h1>
+      <p class="lead">
+        Email: {{ this.user?.email}}
+      </p>
+      <p class="lead">
+        Login: {{ this.user?.login}}
+      </p>
+      <p class="lead">
+        Date of birthday: {{ this.user?.dateOfBirthday | date: 'shortDate'}}
+      </p>
+      <p class="lead">
+        Sex: {{ this.user?.sex}}
+      </p>
+    </div>
+  </div>
+
+  <div #progressChart class="col-lg-8 col-12">
+    <app-progress-chart></app-progress-chart>
+  </div>
+
+
+</div>
