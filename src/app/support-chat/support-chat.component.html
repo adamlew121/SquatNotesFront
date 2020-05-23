@@ -22,8 +22,8 @@
   <label>{{this.messageService.getSelectedChatbox().closed ? "This chatroom has been closed" : "Enter new message:"}}</label>
   <p>
   <textarea (change)="doTextareaValueChange($event)" [attr.disabled]="(this.messageService.loading || this.messageService.getSelectedChatbox().closed) ? '' : null"
-            [ngStyle]="{'width' : '100%', 'height' : '10%'}"> {{this.messageText}} </textarea>
-  <button [attr.disabled]="(this.messageService.loading || this.messageService.getSelectedChatbox().closed) ? '' : null" class="btn btn-success" (click)="this.messageService.addMessageToChatbox(this.messageText)">Send message</button>
+            [ngStyle]="{'width' : '100%', 'height' : '10%'}" [value]="messageText"></textarea>
+  <button [attr.disabled]="(this.messageService.loading || this.messageService.getSelectedChatbox().closed) ? '' : null" class="btn btn-success" (click)="this.messageService.addMessageToChatbox(this.messageText); clearTextarea();">Send message</button>
 
 </p>
 

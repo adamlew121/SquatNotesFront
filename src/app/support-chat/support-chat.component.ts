@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupportChatComponent implements OnInit {
 
-  messageText = 'przyklad';
+  messageText = '';
 
   constructor(private messageService: MessageService, private userService: UserService) {
     if (this.messageService.selectedChatbox === undefined) {
@@ -24,6 +24,10 @@ export class SupportChatComponent implements OnInit {
     try {
       this.messageText = ev.target.value;
     } catch (e) {}
+  }
+
+  clearTextarea() {
+    this.messageText = '';
   }
 
 }
