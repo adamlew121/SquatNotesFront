@@ -103,7 +103,7 @@ export class ExerciseAddComponent implements OnInit {
           data => {
             this.alertService.success('Exercise created successfull', true);
             this.close();
-            this.exerciseService.refreshExerciseList();
+            this.exerciseService.getExercisesByUser(parseInt(localStorage.getItem('tempUserId'), 10));
             this.loading = false;
           },
           error => {

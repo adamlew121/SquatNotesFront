@@ -21,23 +21,15 @@ export class ExerciseService {
   getExercisesByUser(idUser: number) {
     this.httpService.getExercisesByUser(idUser).subscribe(exercises => {
       this.exerciseList = exercises;
-    });
-  }
-
-  getExercisesDefault() {
-    this.httpService.getDefaultExercises().subscribe((exercises: Array<Exercise>) => {
-      this.exerciseList = this.exerciseList.concat(exercises);
-      console.log(this.exerciseList);
+      this.httpService.getDefaultExercises().subscribe((exercisesDef: Array<Exercise>) => {
+        this.exerciseList = this.exerciseList.concat(exercisesDef);
+        console.log(this.exerciseList);
+      });
     });
   }
 
   getMuscles(): Array<Muscle> {
     return this.muscleList;
-  }
-
-  refreshExerciseList() {
-    this.getExercisesByUser(parseInt(localStorage.getItem('tempUserId'), 10));
-    this.getExercisesDefault();
   }
 
   getExerciseList(): Array<Exercise> {
