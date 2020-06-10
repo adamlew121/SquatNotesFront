@@ -1,22 +1,22 @@
 <nav id="rightNavbar" class="navbar bg-dark navbar-dark position-fixed align-items-baseline">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link"  (click)="selectExercise('Bench press'); scroll(progressChart)">
+      <a class="nav-link"  (click)="selectExercise('Bench press'); appService.scroll(progressChart)">
         <img [src]="benchPressIcon" class="navIcon" (mouseover)="changeIcon('Bench press')" (mouseout)="changeIcon('Bench press')">
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" (click)="selectExercise('OHP'); scroll(progressChart)">
+      <a class="nav-link" (click)="selectExercise('OHP'); appService.scroll(progressChart)">
         <img [src]="ohpIcon" class="navIcon" (mouseover)="changeIcon('OHP')" (mouseout)="changeIcon('OHP')"/>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" (click)="selectExercise('Squat'); scroll(progressChart)">
+      <a class="nav-link" (click)="selectExercise('Squat'); appService.scroll(progressChart)">
         <img [src]="squatIcon" class="navIcon" (mouseover)="changeIcon('Squat')" (mouseout)="changeIcon('Squat')"/>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" (click)="selectExercise('Deadlift'); scroll(progressChart)">
+      <a class="nav-link" (click)="selectExercise('Deadlift'); appService.scroll(progressChart)">
         <img [src]="deadliftIcon" class="navIcon" (mouseover)="changeIcon('Deadlift')" (mouseout)="changeIcon('Deadlift')"/>
       </a>
     </li>

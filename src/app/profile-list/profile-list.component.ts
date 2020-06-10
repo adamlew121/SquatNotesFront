@@ -13,7 +13,7 @@ export class ProfileListComponent implements OnInit {
 
   private userList: Array<Account> = [];
   private page = 1;
-  private pageSize = 20;
+  private pageSize = 6;
   private maxSize = 10;
 
   constructor(private userService: UserService, private imageService: ImageService, private router: Router) {
@@ -42,5 +42,9 @@ export class ProfileListComponent implements OnInit {
 
   selectProfile(idUser) {
     this.router.navigate(['/profile', idUser] );
+  }
+
+  refreshPage() {
+    this.page = 1;
   }
 }

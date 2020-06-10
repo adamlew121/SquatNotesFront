@@ -12,7 +12,7 @@
       Date of birthday: {{ this.appService.user?.dateOfBirthday | date: 'shortDate'}}
     </p>
     <p class="lead">
-      Sex: {{ this.appService.user?.sex}}
+      Gender: {{ this.appService.user?.sex}}
     </p>
     <a class="btn btn-lg btn-primary" [routerLink]="['/progress',  this.appService.user?.id]" role="button">My progress</a>
 

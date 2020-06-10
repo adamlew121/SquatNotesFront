@@ -106,8 +106,4 @@ export class ProfileDetailsComponent implements OnInit {
     this.squatIcon = this.appService.squatBlackIcon;
     this.deadliftIcon = this.appService.deadliftBlackIcon;
   }
-
-  scroll(el: HTMLElement) {
-    el.scrollIntoView({behavior: 'smooth'});
-  }
 }

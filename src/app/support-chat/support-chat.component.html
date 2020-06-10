@@ -15,7 +15,7 @@
                   'margin-left': message.sentByUser ? '25%' : '0%',
                   'margin-right': message.sentByUser ? '0%' : '25%'}" >
 
-    <p> {{message.sentByUser ? this.messageService.getSelectedChatbox().user.login : 'Support'}} at {{message.messageDate}} </p>
+    <p> {{message.sentByUser ? this.messageService.getSelectedChatbox().user.login : 'Support'}} at {{message.messageDate | date : "dd.MM.yy HH:MM"}} </p>
     <p>{{message.text}}</p>
   </div>
   <hr class="my-4">
@@ -23,8 +23,7 @@
   <p>
   <textarea (change)="doTextareaValueChange($event)" [attr.disabled]="(this.messageService.loading || this.messageService.getSelectedChatbox().closed) ? '' : null"
             [ngStyle]="{'width' : '100%', 'height' : '10%'}" [value]="messageText"></textarea>
-  <button [attr.disabled]="(this.messageService.loading || this.messageService.getSelectedChatbox().closed) ? '' : null" class="btn btn-success" (click)="this.messageService.addMessageToChatbox(this.messageText); clearTextarea();">Send message</button>
-
+  <button [attr.disabled]="(this.messageService.loading || this.messageService.getSelectedChatbox().closed) ? '' : null" class="btn btn-success" (click)="addMessage();">Send message</button>
 </p>
 
 </div>

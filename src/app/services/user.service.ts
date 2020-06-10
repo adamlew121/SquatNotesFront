@@ -73,7 +73,7 @@ export class UserService {
   }
 
   filterByGender(userList: Array<Account>, gender: Gender) {
-    return userList.filter(user => user.sex === gender.toString());
+    return userList.filter(user => user.sex !== gender.toString());
   }
 
   filterByContainWord(userList: Array<Account>, word: string) {

@@ -34,7 +34,7 @@
     <div class="input-group-append">
       <span class="input-group-text"><i class="fas fa-eye"></i></span>
     </div>
-    <select id="page-size" class="form-control" [(ngModel)]="pageSize" aria-label="Page size">
+    <select id="page-size" class="form-control" (change)="refreshPage();" [(ngModel)]="pageSize" aria-label="Page size">
       <option value="" selected disabled>Number of visible accounts...</option>
       <option [value]="6">6</option>
       <option [value]="12">12</option>

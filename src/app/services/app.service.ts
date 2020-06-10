@@ -30,4 +30,8 @@ export class AppService {
 
   constructor() {
   }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+  }
 }
