@@ -1,7 +1,7 @@
 <div class="d-flex listRow">
   <div class="row w-100">
     <app-profile-list-filter class="col-12"></app-profile-list-filter>
-    <div *ngFor="let user of userList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" class="col-lg-6 col-md-6 col-12">
+    <div *ngFor="let user of userList | slice: (page-1) * pageSize : (page) * pageSize" class="col-lg-6 col-md-6 col-12">
       <div class="profileBox row" (click)="selectProfile(user.id)">
         <div class="col-3">
           <img *ngIf="getProfilePhoto(user)" [src]="user?.profilePicture" class="rounded-circle profilePhoto" alt="profile image"/>
