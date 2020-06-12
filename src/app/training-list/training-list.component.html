@@ -16,7 +16,7 @@
       <td> {{ training.difficulty }}</td>
       <td>
         <button class="btn btn-primary" (click)="this.trainingService.selectTraining(training);">Show details</button>
-        <button class="btn btn-danger" (click)="this.trainingService.deleteTraining(training);">Delete training</button>
+        <button *ngIf="canDelete" class="btn btn-danger" (click)="this.trainingService.deleteTraining(training);">Delete training</button>
       </td>
     </tr>
     </tbody>

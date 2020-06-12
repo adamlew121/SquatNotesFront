@@ -20,6 +20,7 @@ import {ProfileDetailsComponent} from './profile-details/profile-details.compone
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'profile/:id', component: ProfileDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'training-list/:id', component: TrainingListComponent, canActivate: [AuthUserGuard]},
   {path: 'training-list', component: TrainingListComponent, canActivate: [AuthUserGuard]},
   {path: 'support', component: SupportComponent, canActivate: [AuthGuard]},
   {path: 'training-detail', component: TrainingDetailComponent, canActivate: [AuthUserGuard]},

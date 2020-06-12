@@ -41,6 +41,8 @@
       <p class="lead">
         Sex: {{ this.user?.sex}}
       </p>
+      <a class="btn btn-lg btn-primary" [routerLink]="['/training-list', idUser]" role="button">{{this.user?.name}} trainings</a>
+
     </div>
   </div>
 
